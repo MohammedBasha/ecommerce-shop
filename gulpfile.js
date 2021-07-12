@@ -51,7 +51,7 @@ gulp.task('styles', function () {
 gulp.task('watch', function() {
     livereload.listen();
 
-    gulp.watch('./admin/*.php').on('change', function(file) {
+    gulp.watch('./admin/**/*.php').on('change', function(file) {
         livereload.reload(file);
     });
 

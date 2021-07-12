@@ -2,6 +2,8 @@
 include "init.php";
 include $tpl . "header.php";
 include "includes/languages/en.php";
+
+echo lang("Message") . " " . lang("Admin");
 ?>
 
 <body>

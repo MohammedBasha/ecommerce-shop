@@ -1,2 +1,2 @@
 # eCommerce Shop
-eCommerce shop with pure PHP, mySQL, Bootstrap and jQuery.
+eCommerce shop with pure PHP, MySQL, Bootstrap, and jQuery.
