@@ -9,7 +9,7 @@ $option = [
 try {
     $con = new PDO($dsn, $user, $pass, $option);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo 'Connected';
+//    echo 'Connected';
 } catch (PDOException $e) {
     echo 'Failed to connect ' . $e->getMessage();
 }
