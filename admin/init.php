@@ -10,5 +10,5 @@ $js = "layout/js/"; // JS Directory
 $lang = "includes/languages/"; // language Directory
 
 // Include the important files
-include $lang . "en.php";
-include $tpl . "header.php";
+include $lang . "en.php"; // The English language file
+include $tpl . "header.php"; // The Header file
