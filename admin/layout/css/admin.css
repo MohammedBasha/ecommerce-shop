@@ -50,7 +50,8 @@ body {
 .navbar .dropdown-menu,
 .navbar .dropdown-item:focus,
 .navbar .dropdown-item:hover,
-.navbar .navbar-nav.admin-dropdown {
+.navbar .admin-dropdown li.dropdown:hover,
+.navbar .admin-dropdown li.dropdown.show {
   background-color: #3498db;
   color: #fff;
 }
