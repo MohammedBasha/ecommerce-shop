@@ -2,8 +2,14 @@
 
 function lang($phrase) {
     static $lang = [
-        "Message" => "Welcome",
-        "Admin" => "Administrator"
+
+        // Navbar links
+        "HOME_ADMIN"    => "Home",
+        "CATEGORIES"    => "Categories",
+        "ITEMS"         => "Items",
+        "MEMBERS"       => "Members",
+        "STATISTICS"    => "Statistics",
+        "LOGS"          => "Logs"
     ];
     return $lang[$phrase];
 }
