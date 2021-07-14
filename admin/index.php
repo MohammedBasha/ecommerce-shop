@@ -6,6 +6,9 @@ session_start();
 // Adding the $noNavbar variable to remove the Navbar from the Login page (index.php)
 $noNavbar = '';
 
+// Set the page title
+$pageTitle = 'Login';
+
 // checking if the session named by the username is set, redirect to the dashboard.php
 if (isset($_SESSION['Username'])) {
     header('Location: dashboard.php');
