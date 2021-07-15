@@ -24,13 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
     $hashedPass = sha1($password); // hashing the password
 
     // Checking if the user exists in the database and is an admin (GroupID = 1)
-    $stmt = $con->prepare("SELECT Username, Password FROM users WHERE Username = ? AND Password = ? AND GroupID = 1");
+    $stmt = $con->prepare("SELECT UserId, Username, Password
+                            FROM users
+                            WHERE Username = ?
+                            AND Password = ?
+                            AND GroupID = 1
+                            LIMIT 1");
     $stmt->execute([$username, $hashedPass]);
+    $row = $stmt->fetch();
     $rowCount = $stmt->rowCount();
 
     // Checking if there's an admin in the database, then create a session with its username, and redirect him to the dashboard.php
     if ($rowCount > 0) {
         $_SESSION['Username'] = $username; // Registering session name
+        $_SESSION['ID'] = $row['UserId']; // Registering session ID
         header('Location: dashboard.php');
         exit();
     }

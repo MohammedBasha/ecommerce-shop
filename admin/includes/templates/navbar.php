@@ -31,7 +31,7 @@
                                 Mohammed
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#" title="Edit">Edit profile</a>
+                                <a class="dropdown-item" href="members.php?do=edit&userid=<?php echo $_SESSION['ID'] ?>" title="Edit">Edit profile</a>
                                 <a class="dropdown-item" href="#" title="Settings">Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php" title="Logout">Logout</a>
