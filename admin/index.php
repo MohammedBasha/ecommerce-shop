@@ -9,6 +9,9 @@ $noNavbar = '';
 // Set the page title
 $pageTitle = 'Login';
 
+// Adding the Page class
+$pageClass = 'login-page';
+
 // checking if the session named by the username is set, redirect to the dashboard.php
 if (isset($_SESSION['Username'])) {
     header('Location: dashboard.php');
@@ -43,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
     }
 }
 ?>
-
-<body>
+    <!-- Starting the HTML -->
     <form class="login-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <h4 class="text-center">Admin login</h4>
         <div class="form-group">
@@ -57,8 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
-
-
+    <!-- Enging the HTML -->
 
 <?php
     include $tpl . "footer.php"; // Include the Footer file

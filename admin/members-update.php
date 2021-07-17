@@ -1,0 +1,79 @@
+<?php
+echo '<h1 class="text-center">Update member</h1>';
+
+// Checking if the user browsing the update page via POST request
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+// Storing the data in variables
+$id         = $_POST['userid'];
+$username   = $_POST['username'];
+$email      = $_POST['email'];
+$fullname   = $_POST['full-name'];
+
+// Updating the password
+$password = empty($_POST['new-password'])? $_POST['old-password'] : sha1($_POST['new-password']);
+
+// Validate the form
+$formErrors = [];
+
+if (empty($username)) {
+$formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Username Can\'t be <strong>Empty</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+}
+
+if (strlen($username) < 4) {
+$formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Username Can\'t be less than <strong>4</strong> characters long
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+}
+
+if (strlen($username) > 20) {
+$formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Username must be more than <strong>20</strong> characters long
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+}
+
+if (empty($email)) {
+$formErrors[] = '<div class="error-email alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Email field can\'t be <strong>empty</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+}
+
+if (empty($fullname)) {
+$formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Fullname Can\'t be <strong>Empty</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+}
+
+// Loop through the errors and print them
+foreach ($formErrors as $error) {
+echo $error . '<br>';
+}
+
+// Update the data in the database if there's no errors
+if (empty($formErrors)) {
+// Updating the data in the database
+$stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
+$stmt->execute([$username, $email, $fullname, $password, $id]);
+
+echo $stmt->rowCount() . ' Record updated';
+}
+} else {
+echo 'Sorry, you can\'t browse this page';
+}

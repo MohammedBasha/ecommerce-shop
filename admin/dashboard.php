@@ -9,6 +9,9 @@ if (isset($_SESSION['Username'])) {
     // Set the page title
     $pageTitle = 'Dashboard';
 
+    // Adding the Page class
+    $pageClass = 'dashboard-page';
+
     // include the initialize file
     include "init.php";
 
