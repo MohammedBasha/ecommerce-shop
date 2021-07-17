@@ -73,3 +73,19 @@ body {
 .navbar .dropdown-menu .dropdown-item:hover, .navbar .dropdown-menu .dropdown-item:focus {
   opacity: 0.7;
 }
+
+/* Members page styles */
+.members-page-inner-content-wrapper h1 {
+  font-size: 55px;
+  font-weight: bold;
+  margin: 40px 0;
+  color: #666;
+}
+.members-page-inner-content-wrapper .form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.members-page-inner-content-wrapper .form-group label {
+  flex-basis: 20%;
+}
