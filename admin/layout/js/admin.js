@@ -20,4 +20,9 @@ $(function() {
             $(this).removeClass('hidden').addClass('shown');
         }
     });
+
+    // Confirming the member's delete
+    $('.confirm').click(function() {
+        return confirm('Do you want to delete this user?');
+    });
 });

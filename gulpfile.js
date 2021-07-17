@@ -55,6 +55,10 @@ gulp.task('watch', function() {
         livereload.reload(file);
     });
 
+    gulp.watch('./admin/**/*.js').on('change', function(file) {
+        livereload.reload(file);
+    });
+
      gulp.watch(config.srcAdmin, gulp.series('styles'));
 });
 
