@@ -9,4 +9,15 @@ $(function() {
     //    .blur(function() {
     //        $(this).attr("placeholder", $(this).attr("data-text"));
     //    });
+
+    // Showing the password if clicking the Eye Icon
+    $('.show-password').click(function() {
+        if ($(this).hasClass('shown')) {
+            $(this).siblings('input[type=text]').attr('type', 'password');
+            $(this).removeClass('shown').addClass('hidden');
+        } else {
+            $(this).siblings('input[type=password]').attr('type', 'text');
+            $(this).removeClass('hidden').addClass('shown');
+        }
+    });
 });
