@@ -45,16 +45,16 @@ if (isset($_SESSION['Username'])) {
                             <input type="hidden" name="userid" value="<?php echo $userid; ?>">
                             <div class="form-group">
                                 <label for="username">Username:</label>
-                                <input type="text" class="form-control form-control-lg" id="username" name="username" autocomplete="off" value="<?php echo $row['Username']; ?>">
+                                <input type="text" class="form-control form-control-lg" id="username" name="username" autocomplete="off" value="<?php echo $row['Username']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="hidden" name="old-password" value="<?php echo $row['Password']; ?>">
-                                <input type="password" class="form-control form-control-lg" id="new-password" name="new-password" autocomplete="new-password">
+                                <input type="password" class="form-control form-control-lg" id="new-password" name="new-password" autocomplete="new-password" placeholder="Leave it blank if you won't change">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control form-control-lg" id="email" name="email" autocomplete="off" value="<?php echo $row['Email']; ?>">
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" autocomplete="off" value="<?php echo $row['Email']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="full-name">Full name</label>
@@ -84,18 +84,69 @@ if (isset($_SESSION['Username'])) {
             $fullname   = $_POST['full-name'];
 
             // Updating the password
-            $password = '';
-            if (empty($_POST['new-password'])) {
-                $password = $_POST['old-password'];
-            } else {
-                $password = sha1($_POST['new-password']);
+            $password = empty($_POST['new-password'])? $_POST['old-password'] : sha1($_POST['new-password']);
+
+            // Validate the form
+            $formErrors = [];
+
+            if (empty($username)) {
+                $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+              Username Can\'t be <strong>Empty</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
             }
 
-            // Updating the data in the database
-            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
-            $stmt->execute([$username, $email, $fullname, $password, $id]);
+            if (strlen($username) < 4) {
+                $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+              Username Can\'t be less than <strong>4</strong> characters long
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            }
 
-            echo $stmt->rowCount() . ' Record updated';
+            if (strlen($username) > 20) {
+                $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
+              Username must be more than <strong>20</strong> characters long
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            }
+
+            if (empty($email)) {
+                $formErrors[] = '<div class="error-email alert alert-warning alert-dismissible fade show mb-3" role="alert">
+              Email field can\'t be <strong>empty</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>';
+            }
+
+            if (empty($fullname)) {
+                $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+              Fullname Can\'t be <strong>Empty</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            }
+
+            // Loop through the errors and print them
+            foreach ($formErrors as $error) {
+                echo $error . '<br>';
+            }
+
+            // Update the data in the database if there's no errors
+            if (empty($formErrors)) {
+                // Updating the data in the database
+                $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
+                $stmt->execute([$username, $email, $fullname, $password, $id]);
+
+                echo $stmt->rowCount() . ' Record updated';
+            }
         } else {
             echo 'Sorry, you can\'t browse this page';
         }
