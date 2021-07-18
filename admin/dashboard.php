@@ -15,9 +15,53 @@ if (isset($_SESSION['Username'])) {
     // include the initialize file
     include "init.php";
     ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">Welcome <?php echo $_SESSION['Username']; ?></div>
+    <div class="dashboard-inner-wrapper">
+        <div class="container">
+            <div class="row">
+                <h1 class="col-12 text-center mb-5">Dashboard</h1>
+                <div class="col-12 mb-5 cards">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total members</h5>
+                            <p class="card-text">200</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending members</h5>
+                            <p class="card-text">25</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total items</h5>
+                            <p class="card-text">1500</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total comments</h5>
+                            <p class="card-text">3500</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-5 latest-registered">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest registered users:</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-5 latest-items">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest items:</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <?php

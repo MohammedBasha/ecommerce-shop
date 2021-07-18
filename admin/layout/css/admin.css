@@ -75,24 +75,35 @@ body {
 }
 
 /* Members page styles */
-.members-page h1, .memebers-inner-content h1 {
+.dashboard-inner-wrapper h1, .members-page h1, .memebers-inner-content h1 {
   font-size: 55px;
   font-weight: bold;
   margin: 40px 0;
   color: #666;
 }
-.members-page .form-group, .memebers-inner-content .form-group {
+.dashboard-inner-wrapper .form-group, .members-page .form-group, .memebers-inner-content .form-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
-.members-page .form-group label, .memebers-inner-content .form-group label {
+.dashboard-inner-wrapper .form-group label, .members-page .form-group label, .memebers-inner-content .form-group label {
   flex-basis: 20%;
 }
-.members-page .form-group .show-password, .memebers-inner-content .form-group .show-password {
+.dashboard-inner-wrapper .form-group .show-password, .members-page .form-group .show-password, .memebers-inner-content .form-group .show-password {
   position: absolute;
   right: 10px;
   cursor: pointer;
   font-size: 1.2em;
+}
+
+/* Dashboard Page */
+.cards {
+  display: flex;
+  justify-content: space-between;
+}
+.cards .card {
+  flex-basis: inherit;
+  margin: 0 10px;
+  text-align: center;
 }
