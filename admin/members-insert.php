@@ -89,8 +89,8 @@
 
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
-                            users(Username, Password, Email, FullName, Date)
-                            VALUES (:username, :password, :email, :fullname, now())");
+                            users(Username, Password, Email, FullName, RegStatus, Date)
+                            VALUES (:username, :password, :email, :fullname, 1, now())");
                         $stmt->execute([
                             'username' => $username,
                             'password' => $hashedPassword,

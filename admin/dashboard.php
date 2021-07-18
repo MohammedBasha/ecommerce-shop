@@ -23,7 +23,9 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Total members</h5>
-                            <p class="card-text">200</p>
+                            <p class="card-text">
+                                <?php echo countItem('UserID', 'users'); ?>
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -49,7 +51,9 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Latest registered users:</h5>
-                            <p class="card-text"></p>
+                            <p class="card-text">
+
+                            </p>
                         </div>
                     </div>
                 </div>

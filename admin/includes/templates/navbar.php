@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <a class="navbar-brand" href="index.php" title="<?php echo lang("HOME_ADMIN"); ?>"><?php echo lang("HOME_ADMIN"); ?></a>
+                <a class="navbar-brand" href="dashboard.php" title="<?php echo lang("HOME_ADMIN"); ?>"><?php echo lang("HOME_ADMIN"); ?></a>
                 <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -27,7 +27,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto admin-dropdown">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Admin">
+                            <a class="nav-link dropdown-toggle" href="dashboard.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Admin">
                                 Mohammed
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

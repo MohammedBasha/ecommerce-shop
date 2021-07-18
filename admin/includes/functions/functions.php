@@ -50,3 +50,17 @@ function checkItem($select, $from, $value) {
     $count = $stmt->rowCount();
     return $count;
 }
+
+/*
+ * Count items in the database
+ * parameters:
+ * $item: could be user / item / category
+ * $from: table name to select from
+ * */
+
+function countItem($item, $from) {
+    global $con;
+    $stmt = $con->prepare("SELECT COUNT($item) FROM $from");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
