@@ -27,37 +27,37 @@ if (isset($_SESSION['Username'])) {
     if ($do == 'manage') { // Manage page
 
         // include member's manage file
-        include "members-manage.php";
+        include $members . "members-manage.php";
 
     } elseif ($do == 'add') { // Add members page
 
         // include member's add file
-        include "members-add.php";
+        include $members . "members-add.php";
 
     } elseif ($do == 'insert') { // Insert Page
 
         // include member's insert file
-        include "members-insert.php";
+        include $members . "members-insert.php";
 
     } elseif ($do == 'edit') { // Edit page
 
         // include member's edit file
-        include "members-edit.php";
+        include $members . "members-edit.php";
 
     } elseif ($do == 'update') { // update page that redirected from the edit page form's action
 
         // include member's update file
-        include "members-update.php";
+        include $members . "members-update.php";
 
     } elseif ($do == 'delete') { // Delete member's page
 
         // include member's delete file
-        include "members-delete.php";
+        include $members . "members-delete.php";
 
     } elseif ($do == 'activate') { // Activate member's page
 
         // include member's activate file
-        include "members-activate.php";
+        include $members . "members-activate.php";
 
     }
 

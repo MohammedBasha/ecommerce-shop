@@ -7,6 +7,7 @@ include "connect.php";
 $tpl = "includes/templates/"; // Templates directory
 $lang = "includes/languages/"; // Language Directory
 $func = "includes/functions/"; // Functions Directory
+$members = "includes/pages/members/"; // Members Directory
 $css = "layout/css/"; // CSS Directory
 $js = "layout/js/"; // JS Directory
 

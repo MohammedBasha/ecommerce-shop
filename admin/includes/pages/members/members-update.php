@@ -6,16 +6,16 @@
 // Checking if the user browsing the update page via POST request
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-// Storing the data in variables
+    // Storing the data in variables
     $id = $_POST['userid'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $fullname = $_POST['full-name'];
 
-// Updating the password
+    // Updating the password
     $password = empty($_POST['new-password']) ? $_POST['old-password'] : sha1($_POST['new-password']);
 
-// Validate the form
+    // Validate the form
     $formErrors = [];
 
     if (empty($username)) {
@@ -63,14 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>';
     }
 
-// Loop through the errors and print them
+    // Loop through the errors and print them
     foreach ($formErrors as $error) {
         echo $error . '<br>';
     }
 
-// Update the data in the database if there's no errors
+    // Update the data in the database if there's no errors
     if (empty($formErrors)) {
-// Updating the data in the database
+    // Updating the data in the database
         $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
         $stmt->execute([$username, $email, $fullname, $password, $id]);
 

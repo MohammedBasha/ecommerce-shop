@@ -6,14 +6,14 @@
 
                 echo '<h1 class="col-12 text-center">Insert member</h1>';
 
-// Storing the data in variables
+                // Storing the data in variables
                 $username = $_POST['username'];
                 $password = $_POST['password'];
                 $hashedPassword = sha1($password);
                 $email = $_POST['email'];
                 $fullname = $_POST['full-name'];
 
-// Validate the form
+                // Validate the form
                 $formErrors = [];
 
                 if (empty($username)) {
