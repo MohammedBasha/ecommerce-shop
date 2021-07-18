@@ -6,11 +6,9 @@
             intval($_GET['userid']) : '0';
 
         // Checking if the userid exists in the database and delete its data
-        $stmt = $con->prepare("SELECT * FROM users WHERE UserId = ? LIMIT 1");
-        $stmt->execute([$userid]);
-        $rowCount = $stmt->rowCount();
+        $chk = checkItem('UserId', 'users', $userid);
 
-        if ($rowCount > 0) {
+        if ($chk > 0) {
             $stmt = $con->prepare("DELETE FROM users WHERE UserId = :userid");
             $stmt->bindParam(":userid", $userid);
             $stmt->execute();
