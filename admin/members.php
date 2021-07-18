@@ -21,7 +21,7 @@ if (isset($_SESSION['Username'])) {
     include "init.php";
 
     // Checking the value of 'do' query value and store it or set to manage
-    $do = isset($_GET['do'])? $_GET['do'] : 'manage';
+    $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
 
     // If the page is the manage page
     if ($do == 'manage') { // Manage page

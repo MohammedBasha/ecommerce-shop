@@ -1,8 +1,7 @@
 <div class="members-add memebers-inner-content">
-    <h1 class="text-center">Add new member</h1>
-
     <div class="container">
         <div class="row">
+            <h1 class="col-12 text-center">Add new member</h1>
             <form class="col-8 edit-member-form" method="post" action="?do=insert">
                 <div class="form-group">
                     <label for="username">Username:</label>

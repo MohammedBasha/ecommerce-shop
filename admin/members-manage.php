@@ -7,7 +7,7 @@ $rows = $stmt->fetchAll(); // get all the records
 
 ?>
 
-<div class="members-manage memebers-inner-content">
+<div class="members-manage memebers-inner-content mb-5">
     <div class="container">
         <div class="row">
             <h1 class="col-12 mt-5 text-center">Manage members</h1>

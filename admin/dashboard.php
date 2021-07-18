@@ -14,11 +14,16 @@ if (isset($_SESSION['Username'])) {
 
     // include the initialize file
     include "init.php";
-
+    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">Welcome <?php echo $_SESSION['Username']; ?></div>
+        </div>
+    </div>
+    <?php
     include $tpl . "footer.php"; // Include the Footer file
-
-    echo 'Welcome ' . $_SESSION['Username'];
 } else {
     header('Location: index.php');
     exit();
 }
+?>

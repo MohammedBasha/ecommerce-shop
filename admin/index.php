@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
-    <!-- Enging the HTML -->
+    <!-- Ending the HTML -->
 
 <?php
     include $tpl . "footer.php"; // Include the Footer file
