@@ -78,20 +78,29 @@
                 // Insert the data in the database if there's no errors
                 if (empty($formErrors)) {
 
-                    // Inserting the data in the database
-                    $stmt = $con->prepare("INSERT INTO
+                    // Checking if the username is found in the database
+                    $chk = checkItem('Username', 'users', $username);
+
+                    if ($chk == 1) { // Redirect him to add member page if username is found in the database
+                        echo '<div class="col-12 alert alert-warning text-center mb-3">This username already exists</div>';
+                        header("refresh:3;url=members.php?do=add");
+
+                    } else { // or insert new member
+                        
+                        // Inserting the data in the database
+                        $stmt = $con->prepare("INSERT INTO
                             users(Username, Password, Email, FullName)
                             VALUES (:username, :password, :email, :fullname)");
-                    $stmt->execute([
-                        'username' => $username,
-                        'password' => $hashedPassword,
-                        'email' => $email,
-                        'fullname' => $fullname
-                    ]);
+                        $stmt->execute([
+                            'username' => $username,
+                            'password' => $hashedPassword,
+                            'email' => $email,
+                            'fullname' => $fullname
+                        ]);
 
-                    $successMsg = $stmt->rowCount() . ' Record inserted';
-                    redirectHome($successMsg, '', 15);
-
+                        $successMsg = $stmt->rowCount() . ' Record inserted';
+                        redirectHome($successMsg, '', 15);
+                    }
                 }
             } else {
                 $errorMsg = 'Sorry, you can\'t browse this page';

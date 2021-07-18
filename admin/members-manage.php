@@ -53,7 +53,7 @@ $rows = $stmt->fetchAll(); // get all the records
             </table>
             <a href="members.php?do=add" title="Add new member" class="btn btn-primary btn-lg">
                 <i class="fas fa-plus"></i>
-                <span>Add new member<span>
+                <span>New member<span>
             </a>
         </div>
     </div>

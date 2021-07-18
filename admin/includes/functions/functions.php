@@ -35,3 +35,19 @@ function redirectHome($successMsg = '', $errorMsg = '', $seconds = 3) {
 
     exit();
 }
+
+/*
+ * Check items in the database
+ * parameters:
+ * $select: could be user / item / category
+ * $from: table name to select from
+ * $value: value of selected variable ($select)
+ * */
+
+function checkItem($select, $from, $value) {
+    global $con;
+    $stmt = $con->prepare("SELECT $select FROM $from WHERE $select = ?");
+    $stmt->execute([$value]);
+    $count = $stmt->rowCount();
+    return $count;
+}
