@@ -82,15 +82,15 @@
                     $chk = checkItem('Username', 'users', $username);
 
                     if ($chk == 1) { // Redirect him to add member page if username is found in the database
-                        echo '<div class="col-12 alert alert-warning text-center mb-3">This username already exists</div>';
-                        header("refresh:3;url=members.php?do=add");
+                        $msg = '<div class="col-12 alert alert-warning text-center mb-3">This username already exists</div>';
+                        redirectHome($msg, 'back');
 
                     } else { // or insert new member
 
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
-                            users(Username, Password, Email, FullName)
-                            VALUES (:username, :password, :email, :fullname)");
+                            users(Username, Password, Email, FullName, Date)
+                            VALUES (:username, :password, :email, :fullname, now())");
                         $stmt->execute([
                             'username' => $username,
                             'password' => $hashedPassword,

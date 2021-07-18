@@ -29,19 +29,19 @@ $rows = $stmt->fetchAll(); // get all the records
                     ?>
                     <tr>
                         <th scope="row">
-                            <?php echo $row['UserID'] ?>
+                            <?php echo $row['UserID']; ?>
                         </th>
                         <td>
-                            <?php echo $row['Username'] ?>
+                            <?php echo $row['Username']; ?>
                         </td>
                         <td>
-                            <?php echo $row['Email'] ?>
+                            <?php echo $row['Email']; ?>
                         </td>
                         <td>
-                            <?php echo $row['FullName'] ?>
+                            <?php echo $row['FullName']; ?>
                         </td>
                         <td>
-                            <?php  ?>
+                            <?php echo $row['Date']; ?>
                         </td>
                         <td>
                             <a href="members.php?do=edit&userid=<?php echo $row['UserID'] ?>" title="Edit" class="btn btn-success">Edit</a>
