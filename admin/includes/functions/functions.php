@@ -64,3 +64,19 @@ function countItem($item, $from) {
     $stmt->execute();
     return $stmt->fetchColumn();
 }
+
+/*
+ * Get latest items in the database
+ * parameters:
+ * $select: could be user / item / category
+ * $from: table name to select from
+ * $limit: value of selected variable ($select)
+ * */
+
+function getLatest($select, $from, $order, $limit = 5) {
+    global $con;
+    $stmt = $con->prepare("SELECT $select FROM $from ORDER BY $order DESC LIMIT $limit");
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+    return $rows;
+}

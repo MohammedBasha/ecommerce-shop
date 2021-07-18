@@ -19,10 +19,12 @@ if (isset($_SESSION['Username'])) {
         <div class="container">
             <div class="row">
                 <h1 class="col-12 text-center mb-5">Dashboard</h1>
+
                 <div class="col-12 mb-5 cards">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Total members</h5>
+
                             <p class="card-text">
                                 <?php echo countItem('UserID', 'users'); ?>
                             </p>
@@ -31,6 +33,7 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Pending members</h5>
+
                             <p class="card-text">
                                 <a href="members.php?do=manage&page=pending" title="Pending members">
                                     <?php echo checkItem('RegStatus', 'users', 0); ?>
@@ -41,12 +44,14 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Total items</h5>
+
                             <p class="card-text">1500</p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Total comments</h5>
+
                             <p class="card-text">3500</p>
                         </div>
                     </div>
@@ -55,9 +60,23 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Latest registered users:</h5>
-                            <p class="card-text">
 
+                            <?php
+                            $latestUsers = getLatest('*', 'users', 'UserID', 5);
+                            foreach ($latestUsers as $latestUser) {
+                            ?>
+                            <p class="card-text">
+                                <?php echo $latestUser['Username']; ?>
+                                <a href="members.php?do=edit&userid=<?php echo $latestUser['UserID']; ?>" title="Edit" class="btn btn-success">Edit</a>
+                                <?php
+                                if ($latestUser['RegStatus'] == 0) {
+                                    ?>
+                                    <a href="members.php?do=activate&userid=<?php echo $latestUser['UserID'] ?>" title="Activate" class="btn btn-info">Activate</a>
+                                    <?php
+                                };
+                                ?>
                             </p>
+                            <?php }; ?>
                         </div>
                     </div>
                 </div>
@@ -65,6 +84,7 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Latest items:</h5>
+
                             <p class="card-text"></p>
                         </div>
                     </div>
