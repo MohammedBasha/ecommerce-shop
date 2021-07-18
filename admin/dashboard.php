@@ -31,7 +31,11 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Pending members</h5>
-                            <p class="card-text">25</p>
+                            <p class="card-text">
+                                <a href="members.php?do=manage&page=pending" title="Pending members">
+                                    <?php echo checkItem('RegStatus', 'users', 0); ?>
+                                </a>
+                            </p>
                         </div>
                     </div>
                     <div class="card">

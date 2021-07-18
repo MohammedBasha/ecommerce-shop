@@ -54,6 +54,11 @@ if (isset($_SESSION['Username'])) {
         // include member's delete file
         include "members-delete.php";
 
+    } elseif ($do == 'activate') { // Activate member's page
+
+        // include member's activate file
+        include "members-activate.php";
+
     }
 
     include $tpl . "footer.php"; // Include the Footer file

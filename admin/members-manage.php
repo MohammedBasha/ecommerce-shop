@@ -1,7 +1,12 @@
 <?php
 
-// Selectd all the users
-$stmt = $con->prepare("SELECT * FROM users");
+$query ='';
+if (isset($_GET['page']) && $_GET['page'] == 'pending') {
+    $query = 'WHERE RegStatus = 0';
+}
+
+// Select all the users
+$stmt = $con->prepare("SELECT * FROM users $query");
 $stmt->execute(); // execute the sql statement
 $rows = $stmt->fetchAll(); // get all the records
 
@@ -46,6 +51,13 @@ $rows = $stmt->fetchAll(); // get all the records
                         <td>
                             <a href="members.php?do=edit&userid=<?php echo $row['UserID'] ?>" title="Edit" class="btn btn-success">Edit</a>
                             <a href="members.php?do=delete&userid=<?php echo $row['UserID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
+                            <?php
+                                if ($row['RegStatus'] == 0) {
+                            ?>
+                                    <a href="members.php?do=activate&userid=<?php echo $row['UserID'] ?>" title="Activate" class="btn btn-info">Activate</a>
+                            <?php
+                                };
+                            ?>
                         </td>
                     </tr>
                 <?php }; ?>
