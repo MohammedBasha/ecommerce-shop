@@ -48,8 +48,8 @@ $rowCount = $stmt->rowCount();
                 </form>
                 <?php
             } else {
-                $errorMsg = 'There\'s no User';
-                redirectHome('', $errorMsg);
+                $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">There\'s no User</div>';
+                redirectHome($msg);
             }
             ?>
 

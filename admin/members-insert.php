@@ -86,7 +86,7 @@
                         header("refresh:3;url=members.php?do=add");
 
                     } else { // or insert new member
-                        
+
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
                             users(Username, Password, Email, FullName)
@@ -98,13 +98,13 @@
                             'fullname' => $fullname
                         ]);
 
-                        $successMsg = $stmt->rowCount() . ' Record inserted';
-                        redirectHome($successMsg, '', 15);
+                        $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';
+                        redirectHome($msg, 'back');
                     }
                 }
             } else {
-                $errorMsg = 'Sorry, you can\'t browse this page';
-                redirectHome('', $errorMsg, 15);
+                $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">Sorry, you can\'t browse this page</div>';
+                redirectHome($msg);
             }
             ?>
         </div>

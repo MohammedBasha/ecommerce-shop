@@ -74,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
         $stmt->execute([$username, $email, $fullname, $password, $id]);
 
-        $successMsg = $stmt->rowCount() . ' Record updated';
-        redirectHome($successMsg, '', 5);
+        $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
+        redirectHome($msg, 'back');
     }
 } else {
-    $errorMsg = 'Sorry, you can\'t browse this page';
-    redirectHome('', $errorMsg, 5);
+    $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">Sorry, you can\'t browse this page</div>';
+    redirectHome($msg);
 }
 ?>
         </div>

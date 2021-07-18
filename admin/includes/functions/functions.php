@@ -18,20 +18,19 @@ function getTitle() {
  * $seconds: seconds before redirecting
  * */
 
-function redirectHome($successMsg = '', $errorMsg = '', $seconds = 3) {
-    // Checking if the success argument not empty string
-    if (!empty($successMsg)) {
-        echo '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $successMsg . '</div>';
-        echo '<div class="col-12 alert alert-info text-center">You will be redirected to members page after ' . $seconds . ' seconds</div>';
-        header("refresh:$seconds;url=members.php");
+function redirectHome($msg, $url = null, $seconds = 3) {
+
+    // checking if the url is given
+    if ($url === null) {
+        $url = 'index.php';
+    } else {
+        $url = isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])? $_SERVER['HTTP_REFERER'] : 'index.php';
     }
 
-    // Checking if the error argument not empty string
-    if (!empty($errorMsg)) {
-        echo '<div class="col-12 alert alert-danger text-center mt-5 mb-3">' . $errorMsg . '</div>';
-        echo '<div class="col-12 alert alert-info text-center">You will be redirected to Home page after ' . $seconds . ' seconds</div>';
-        header("refresh:$seconds;url=index.php");
-    }
+    echo $msg;
+    echo '<div class="col-12 alert alert-info text-center">You will be redirected after ' . $seconds . ' seconds</div>';
+
+    header("refresh:$seconds;url=$url");
 
     exit();
 }
