@@ -8,6 +8,7 @@ $tpl = "includes/templates/"; // Templates directory
 $lang = "includes/languages/"; // Language Directory
 $func = "includes/functions/"; // Functions Directory
 $members = "includes/pages/members/"; // Members Directory
+$categories = "includes/pages/categories/"; // Categories Directory
 $css = "layout/css/"; // CSS Directory
 $js = "layout/js/"; // JS Directory
 

@@ -10,7 +10,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" title="<?php echo lang("CATEGORIES"); ?>"><?php echo lang("CATEGORIES"); ?></a>
+                            <a class="nav-link" href="categories.php" title="<?php echo lang("CATEGORIES"); ?>"><?php echo lang("CATEGORIES"); ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" title="<?php echo lang("ITEMS"); ?>"><?php echo lang("ITEMS"); ?></a>
