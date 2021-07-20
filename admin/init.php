@@ -9,6 +9,7 @@ $lang = "includes/languages/"; // Language Directory
 $func = "includes/functions/"; // Functions Directory
 $members = "includes/pages/members/"; // Members Directory
 $categories = "includes/pages/categories/"; // Categories Directory
+$items = "includes/pages/items/"; // Items Directory
 $css = "layout/css/"; // CSS Directory
 $js = "layout/js/"; // JS Directory
 

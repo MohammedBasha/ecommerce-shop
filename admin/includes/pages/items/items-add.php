@@ -1,8 +1,8 @@
-<div class="members-add members-inner-content">
+<div class="items-add items-inner-content">
     <div class="container">
         <div class="row">
-            <h1 class="col-12 text-center">Add new member</h1>
-            <form class="col-8 edit-member-form" method="post" action="?do=insert">
+            <h1 class="col-12 text-center">Add new item</h1>
+            <form class="col-8 edit-item-form" method="post" action="?do=insert">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username" autocomplete="off" required>

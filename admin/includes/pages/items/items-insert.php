@@ -1,10 +1,10 @@
-<div class="members-insert members-inner-content">
+<div class="items-insert items-inner-content">
     <div class="container">
         <div class="row">
             <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') { // Checking if comes from POST
 
-                echo '<h1 class="col-12 text-center">Insert member</h1>';
+                echo '<h1 class="col-12 text-center">Insert item</h1>';
 
                 // Storing the data in variables
                 $username = $_POST['username'];
@@ -79,17 +79,17 @@
                 if (empty($formErrors)) {
 
                     // Checking if the username is found in the database
-                    $chk = checkItem('Username', 'users', $username);
+                    $chk = checkItem('Name', 'items', $username);
 
                     if ($chk == 1) { // Redirect him to add member page if username is found in the database
-                        $msg = '<div class="col-12 alert alert-warning text-center mb-3">This username already exists</div>';
+                        $msg = '<div class="col-12 alert alert-warning text-center mb-3">This item already exists</div>';
                         redirectHome($msg, 'back');
 
                     } else { // or insert new member
 
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
-                            users(Username, Password, Email, FullName, RegStatus, Date)
+                            items(Name, Description, Price, Date, Country, Image, Status, Rating)
                             VALUES (:username, :password, :email, :fullname, 1, now())");
                         $stmt->execute([
                             'username' => $username,

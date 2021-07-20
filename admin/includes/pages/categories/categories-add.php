@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <h1 class="col-12 text-center">Add new category</h1>
-            <form class="col-8 edit-member-form" method="post" action="?do=insert">
+            <form class="col-8 edit-category-form" method="post" action="?do=insert">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control form-control-lg" id="name" name="name" required>
