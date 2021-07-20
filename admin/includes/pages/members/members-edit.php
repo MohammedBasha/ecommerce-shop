@@ -19,7 +19,6 @@ $rowCount = $stmt->rowCount();
                 <h1 class="col-12 text-center">Edit member</h1>
                 <form class="col-8 edit-member-form" method="post" action="?do=update">
                     <input type="hidden" name="userid" value="<?php echo $userid; ?>">
-
                     <div class="form-group">
                         <label for="username">Username:</label>
                         <input type="text" class="form-control form-control-lg" id="username" name="username"

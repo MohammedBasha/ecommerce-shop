@@ -22,7 +22,12 @@ $(function() {
     });
 
     // Confirming the member's delete
-    $('.confirm').click(function() {
+    $('.members-inner-content .confirm').click(function() {
         return confirm('Do you want to delete this user?');
+    });
+
+    // Confirming the category's delete
+    $('.categories-inner-content .confirm').click(function() {
+        return confirm('Do you want to delete this category?');
     });
 });

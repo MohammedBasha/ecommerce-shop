@@ -64,8 +64,8 @@ $rows = $stmt->fetchAll(); // get all the records
                             <?php echo $row['Allow_ads']; ?>
                         </td>
                         <td>
-                            <a href="categories.php?do=edit" title="Edit" class="btn btn-success">Edit</a>
-                            <a href="categories.php?do=delete" title="Delete" class="btn btn-danger confirm">Delete</a>
+                            <a href="categories.php?do=edit&catid=<?php echo $row['ID']; ?>" title="Edit" class="btn btn-success">Edit</a>
+                            <a href="categories.php?do=delete&catid=<?php echo $row['ID']; ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
                         </td>
                     </tr>
                 <?php }; ?>

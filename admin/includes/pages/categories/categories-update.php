@@ -7,72 +7,19 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Storing the data in variables
-    $id = $_POST['userid'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $fullname = $_POST['full-name'];
-
-    // Updating the password
-    $password = empty($_POST['new-password']) ? $_POST['old-password'] : sha1($_POST['new-password']);
-
-    // Validate the form
-    $formErrors = [];
-
-    if (empty($username)) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be <strong>Empty</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    if (strlen($username) < 4) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be less than <strong>4</strong> characters long
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    if (strlen($username) > 20) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username must be more than <strong>20</strong> characters long
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    if (empty($email)) {
-        $formErrors[] = '<div class="error-email alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Email field can\'t be <strong>empty</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    if (empty($fullname)) {
-        $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Fullname Can\'t be <strong>Empty</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    // Loop through the errors and print them
-    foreach ($formErrors as $error) {
-        echo $error . '<br>';
-    }
+    $id             = $_POST['catid'];
+    $name           = $_POST['name'];
+    $description    = $_POST['description'];
+    $ordering       = $_POST['ordering'];
+    $visibility     = $_POST['visibility'];
+    $comments       = $_POST['comments'];
+    $ads            = $_POST['ads'];
 
     // Update the data in the database if there's no errors
-    if (empty($formErrors)) {
+    if (!empty($name)) {
     // Updating the data in the database
-        $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
-        $stmt->execute([$username, $email, $fullname, $password, $id]);
+        $stmt = $con->prepare("UPDATE categories SET Name = ?, Description = ?, Ordering = ?, Visibility = ?, Allow_Comment = ?, Allow_ads = ? WHERE ID = ?");
+        $stmt->execute([$name, $description, $ordering, $visibility, $comments, $ads, $id]);
 
         $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
         redirectHome($msg, 'back');
