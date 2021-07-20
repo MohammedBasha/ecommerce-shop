@@ -4,24 +4,31 @@
             <h1 class="col-12 text-center">Add new item</h1>
             <form class="col-8 edit-item-form" method="post" action="?do=insert">
                 <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" class="form-control form-control-lg" id="username" name="username" autocomplete="off" required>
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control form-control-lg" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control form-control-lg" id="password" name="password" autocomplete="new-password" placeholder="" required>
-                    <i class="fas fa-eye show-password hidden"></i>
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control form-control-lg" id="description" name="description" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control form-control-lg" id="email" name="email" autocomplete="off" required>
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control form-control-lg" id="price" name="price" required>
                 </div>
                 <div class="form-group">
-                    <label for="full-name">Full name</label>
-                    <input type="text" class="form-control form-control-lg" id="full-name" name="full-name" autocomplete="off">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control form-control-lg" id="country" name="country" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add member</button>
+                    <label for="status">Status</label>
+                    <select name="status" class="form-control form-control-lg" required>
+                        <option value="new">New</option>
+                        <option value="used">Used</option>
+                        <option value="old">Old</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add item</button>
                 </div>
             </form>
         </div>

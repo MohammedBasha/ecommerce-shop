@@ -63,9 +63,9 @@ $rows = $stmt->fetchAll(); // get all the records
                 <?php }; ?>
                 </tbody>
             </table>
-            <a href="members.php?do=add" title="Add new member" class="btn btn-primary btn-lg">
+            <a href="items.php?do=add" title="Add new member" class="btn btn-primary btn-lg">
                 <i class="fas fa-plus"></i>
-                <span>New member<span>
+                <span>New item<span>
             </a>
         </div>
     </div>
