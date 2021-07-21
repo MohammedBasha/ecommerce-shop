@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" class="form-control form-control-lg" required>
+                    <select name="status" required>
                         <option value="new">New</option>
                         <option value="used">Used</option>
                         <option value="old">Old</option>
