@@ -31,6 +31,11 @@ $(function() {
         return confirm('Do you want to delete this category?');
     });
 
+    // Confirming the item's delete
+    $('.items-inner-content .confirm').click(function() {
+        return confirm('Do you want to delete this item?');
+    });
+
     // initializing the selectbox plugin
     $("select").selectBoxIt({
         autoWidth: false

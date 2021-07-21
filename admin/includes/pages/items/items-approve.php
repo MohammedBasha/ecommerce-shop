@@ -9,7 +9,7 @@
         $chk = checkItem('ID', 'items', $itemid);
 
         if ($chk > 0) {
-            $stmt = $con->prepare("UPDATE items SET Status = 1 WHERE ID = :itemid");
+            $stmt = $con->prepare("UPDATE items SET Approve = 1 WHERE ID = :itemid");
             $stmt->bindParam(":itemid", $itemid);
             $stmt->execute();
 

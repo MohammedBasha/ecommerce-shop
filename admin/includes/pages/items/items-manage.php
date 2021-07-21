@@ -1,5 +1,10 @@
 <?php
 
+$query ='';
+if (isset($_GET['page']) && $_GET['page'] == 'approve') {
+    $query = 'WHERE Approve = 0';
+}
+
 // Select all the items
 $stmt = $con->prepare("SELECT items.*,
                         categories.Name AS Cetegory_Name,
@@ -12,7 +17,7 @@ $rows = $stmt->fetchAll(); // get all the records
 
 ?>
 
-<div class="members-manage members-inner-content mb-5">
+<div class="items-manage items-inner-content mb-5">
     <div class="container">
         <div class="row">
             <h1 class="col-12 mt-5 text-center">Manage items</h1>
@@ -28,6 +33,7 @@ $rows = $stmt->fetchAll(); // get all the records
                     <th scope="col">Status</th>
                     <th scope="col">Category</th>
                     <th scope="col">Member</th>
+                    <th scope="col">Approve</th>
                     <th scope="col">Control</th>
                 </tr>
                 </thead>
@@ -65,10 +71,13 @@ $rows = $stmt->fetchAll(); // get all the records
                             <?php echo $row['Username']; ?>
                         </td>
                         <td>
+                            <?php echo $row['Approve']; ?>
+                        </td>
+                        <td>
                             <a href="items.php?do=edit&itemid=<?php echo $row['ID'] ?>" title="Edit" class="btn btn-success">Edit</a>
                             <a href="items.php?do=delete&itemid=<?php echo $row['ID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
                             <?php
-                                if ($row['Status'] == 0) {
+                                if ($row['Approve'] == 0) {
                             ?>
                                     <a href="items.php?do=approve&itemid=<?php echo $row['ID'] ?>" title="Activate" class="btn btn-info">Approve</a>
                             <?php
