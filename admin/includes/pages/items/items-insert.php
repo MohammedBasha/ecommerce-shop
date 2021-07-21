@@ -12,6 +12,8 @@
                 $price          = $_POST['price'];
                 $country        = $_POST['country'];
                 $status         = $_POST['status'];
+                $category       = $_POST['category'];
+                $member         = $_POST['member'];
 
                 // Validate the form
                 $formErrors = [];
@@ -52,6 +54,24 @@
 </div>';
                 }
 
+                if ($category == 0) {
+                    $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    You must choose <strong>Category</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+                }
+
+                if ($member == 0) {
+                    $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    You must choose <strong>Member</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+                }
+
                 // Loop through the errors and print them
                 foreach ($formErrors as $error) {
                     echo $error . '<br>';
@@ -62,14 +82,16 @@
 
                     // Inserting the data in the database
                     $stmt = $con->prepare("INSERT INTO
-                        items(Name, Description, Price, Date, Country, Status)
-                        VALUES (:name, :description, :price, now(), :country, :status)");
+                        items(Name, Description, Price, Date, Country, Status, Cat_ID, Member_ID)
+                        VALUES (:name, :description, :price, now(), :country, :status, :catid, :member_id)");
                     $stmt->execute([
                         'name'          => $name,
                         'description'   => $description,
                         'price'         => $price,
                         'country'       => $country,
-                        'status'        => $status
+                        'status'        => $status,
+                        'catid'         => $category,
+                        'member_id'     => $member
                     ]);
 
                     $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';

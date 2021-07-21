@@ -48,12 +48,12 @@ $rows = $stmt->fetchAll(); // get all the records
                             <?php echo $row['Country']; ?>
                         </td>
                         <td>
-                            <a href="items.php?do=edit&userid=<?php echo $row['ID'] ?>" title="Edit" class="btn btn-success">Edit</a>
-                            <a href="items.php?do=delete&userid=<?php echo $row['ID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
+                            <a href="items.php?do=edit&itemid=<?php echo $row['ID'] ?>" title="Edit" class="btn btn-success">Edit</a>
+                            <a href="items.php?do=delete&itemid=<?php echo $row['ID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
                             <?php
                                 if ($row['Status'] == 0) {
                             ?>
-                                    <a href="items.php?do=activate&userid=<?php echo $row['UserID'] ?>" title="Activate" class="btn btn-info">Activate</a>
+                                    <a href="items.php?do=approve&itemid=<?php echo $row['ID'] ?>" title="Activate" class="btn btn-info">Approve</a>
                             <?php
                                 };
                             ?>
