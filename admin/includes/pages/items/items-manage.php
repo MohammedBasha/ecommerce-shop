@@ -1,7 +1,12 @@
 <?php
 
 // Select all the items
-$stmt = $con->prepare("SELECT * FROM items");
+$stmt = $con->prepare("SELECT items.*,
+                        categories.Name AS Cetegory_Name,
+                        users.Username FROM items
+                        INNER JOIN categories ON categories.ID = items.Cat_ID
+                        INNER JOIN users ON users.UserID = items.Member_ID
+                        ORDER BY items.ID ASC");
 $stmt->execute(); // execute the sql statement
 $rows = $stmt->fetchAll(); // get all the records
 
@@ -20,6 +25,8 @@ $rows = $stmt->fetchAll(); // get all the records
                     <th scope="col">Price</th>
                     <th scope="col">Date</th>
                     <th scope="col">Country</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Member</th>
                     <th scope="col">Control</th>
                 </tr>
                 </thead>
@@ -46,6 +53,12 @@ $rows = $stmt->fetchAll(); // get all the records
                         </td>
                         <td>
                             <?php echo $row['Country']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Cetegory_Name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Username']; ?>
                         </td>
                         <td>
                             <a href="items.php?do=edit&itemid=<?php echo $row['ID'] ?>" title="Edit" class="btn btn-success">Edit</a>
