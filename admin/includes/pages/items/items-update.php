@@ -1,62 +1,72 @@
-<div class="members-manage memebers-inner-content">
+<div class="items-manage items-inner-content">
     <div class="container">
         <div class="row">
-            <h1 class="col-12 text-center">Update member</h1>
+            <h1 class="col-12 text-center">Update item</h1>
 <?php
 // Checking if the user browsing the update page via POST request
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Storing the data in variables
-    $id = $_POST['userid'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $fullname = $_POST['full-name'];
-
-    // Updating the password
-    $password = empty($_POST['new-password']) ? $_POST['old-password'] : sha1($_POST['new-password']);
+    $itemid         = $_POST['itemid'];
+    $name           = $_POST['name'];
+    $description    = $_POST['description'];
+    $price          = $_POST['price'];
+    $country        = $_POST['country'];
+    $status         = $_POST['status'];
+    $category       = $_POST['category'];
+    $member         = $_POST['member'];
 
     // Validate the form
     $formErrors = [];
 
-    if (empty($username)) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be <strong>Empty</strong>
+    if (empty($name)) {
+        $formErrors[] = '<div class="error-name alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Name Can\'t be <strong>Empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
     }
 
-    if (strlen($username) < 4) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be less than <strong>4</strong> characters long
+    if (empty($description)) {
+        $formErrors[] = '<div class="error-description alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Description Can\'t be <strong>Empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
     }
 
-    if (strlen($username) > 20) {
-        $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username must be more than <strong>20</strong> characters long
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-    }
-
-    if (empty($email)) {
+    if (empty($price)) {
         $formErrors[] = '<div class="error-email alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Email field can\'t be <strong>empty</strong>
+    Price field can\'t be <strong>empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
     }
 
-    if (empty($fullname)) {
+    if (empty($country)) {
         $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Fullname Can\'t be <strong>Empty</strong>
+    Country Can\'t be <strong>Empty</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+    }
+
+    if ($category == 0) {
+        $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    You must choose <strong>Category</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+    }
+
+    if ($member == 0) {
+        $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    You must choose <strong>Member</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -71,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update the data in the database if there's no errors
     if (empty($formErrors)) {
     // Updating the data in the database
-        $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
-        $stmt->execute([$username, $email, $fullname, $password, $id]);
+        $stmt = $con->prepare("UPDATE items SET Name = ?, Description = ?, Price = ?, Country = ?, Status = ?, Cat_ID = ?, Member_ID = ? WHERE ID = ?");
+        $stmt->execute([$name, $description, $price, $country, $status, $category, $member, $itemid]);
 
         $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
         redirectHome($msg, 'back');

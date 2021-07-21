@@ -18,6 +18,7 @@ $rowCount = $stmt->rowCount();
                 ?>
                 <h1 class="col-12 text-center">Edit item</h1>
                 <form class="col-8 edit-item-form" method="post" action="?do=update">
+                    <input type="hidden" name ="itemid" value="<?php echo $itemid; ?>">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control form-control-lg" id="name" name="name" value="<?php echo $items['Name']; ?>" required>

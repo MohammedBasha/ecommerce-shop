@@ -1,4 +1,4 @@
-<div class="members-manage memebers-inner-content">
+<div class="members-manage members-inner-content">
     <div class="container">
         <div class="row">
             <h1 class="col-12 text-center">Update member</h1>
