@@ -88,8 +88,22 @@ if (isset($_SESSION['Username'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Latest items:</h5>
-
-                            <p class="card-text"></p>
+                            <?php
+                            $latestItems = getLatest('*', 'items', 'ID', 5);
+                            foreach ($latestItems as $latestItem) {
+                                ?>
+                                <p class="card-text">
+                                    <?php echo $latestItem['Name']; ?>
+                                    <a href="items.php?do=edit&itemid=<?php echo $latestItem['ID']; ?>" title="Edit" class="btn btn-success">Edit</a>
+                                    <?php
+                                    if ($latestItem['Approve'] == 0) {
+                                        ?>
+                                        <a href="items.php?do=approve&itemid=<?php echo $latestItem['ID'] ?>" title="Approve" class="btn btn-info">Approve</a>
+                                        <?php
+                                    };
+                                    ?>
+                                </p>
+                            <?php }; ?>
                         </div>
                     </div>
                 </div>
