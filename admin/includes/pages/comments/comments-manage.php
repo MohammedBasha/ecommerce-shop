@@ -12,7 +12,7 @@ $comments = $stmt->fetchAll(); // get all the records
 
 ?>
 
-<div class="members-manage members-inner-content mb-5">
+<div class="comments-manage comments-inner-content mb-5">
     <div class="container">
         <div class="row">
             <h1 class="col-12 mt-5 text-center">Manage comments</h1>
@@ -56,9 +56,9 @@ $comments = $stmt->fetchAll(); // get all the records
                             <a href="comments.php?do=edit&commentid=<?php echo $comment['comment_id'] ?>" title="Edit" class="btn btn-success">Edit</a>
                             <a href="comments.php?do=delete&commentid=<?php echo $comment['comment_id'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
                             <?php
-                                if ($row['RegStatus'] == 0) {
+                                if ($comment['status'] == 0) {
                             ?>
-                                    <a href="comments.php?do=approve&commentid=<?php echo $comment['comment_id'] ?>" title="Activate" class="btn btn-info">Activate</a>
+                            <a href="comments.php?do=approve&commentid=<?php echo $comment['comment_id'] ?>" title="Approve" class="btn btn-info">Approve</a>
                             <?php
                                 };
                             ?>

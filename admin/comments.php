@@ -1,9 +1,6 @@
 <?php
 
-/*
- * Manage Members page:
- * You can Add, edit and delete members from here
- * */
+ob_start();
 
 // Starting the session to remember the user
 session_start();
@@ -44,7 +41,7 @@ if (isset($_SESSION['Username'])) {
         // include comments's delete file
         include $comments . "comments-delete.php";
 
-    } elseif ($do == 'activate') { // Activate member's page
+    } elseif ($do == 'approve') { // Approve member's page
 
         // include comment's approve file
         include $comments . "comments-approve.php";
@@ -57,3 +54,5 @@ if (isset($_SESSION['Username'])) {
     header('Location: index.php');
     exit();
 }
+
+ob_end_flush();
