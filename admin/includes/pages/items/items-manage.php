@@ -25,6 +25,7 @@ $rows = $stmt->fetchAll(); // get all the records
                     <th scope="col">Price</th>
                     <th scope="col">Date</th>
                     <th scope="col">Country</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Category</th>
                     <th scope="col">Member</th>
                     <th scope="col">Control</th>
@@ -53,6 +54,9 @@ $rows = $stmt->fetchAll(); // get all the records
                         </td>
                         <td>
                             <?php echo $row['Country']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Status']; ?>
                         </td>
                         <td>
                             <?php echo $row['Cetegory_Name']; ?>

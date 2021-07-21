@@ -7,7 +7,7 @@ $itemid = isset($_GET['itemid']) && is_numeric($_GET['itemid']) ?
 // Checking if the item id exists in the database
 $stmt = $con->prepare("SELECT * FROM items WHERE ID = ? LIMIT 1");
 $stmt->execute([$itemid]);
-$row = $stmt->fetch();
+$items = $stmt->fetch();
 $rowCount = $stmt->rowCount();
 ?>
 <div class="items-edit items-inner-content">
@@ -18,31 +18,98 @@ $rowCount = $stmt->rowCount();
                 ?>
                 <h1 class="col-12 text-center">Edit item</h1>
                 <form class="col-8 edit-item-form" method="post" action="?do=update">
-                    <input type="hidden" name="itemid" value="<?php echo $itemid; ?>">
                     <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control form-control-lg" id="username" name="username"
-                               autocomplete="off" value="<?php echo $row['Username']; ?>" required>
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control form-control-lg" id="name" name="name" value="<?php echo $items['Name']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="new-password">Password</label>
-                        <input type="hidden" name="old-password" value="<?php echo $row['Password']; ?>">
-                        <input type="password" class="form-control form-control-lg" id="new-password"
-                               name="new-password" autocomplete="new-password"
-                               placeholder="Leave it blank if you won't change">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control form-control-lg" id="description" name="description" value="<?php echo $items['Description']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control form-control-lg" id="email" name="email"
-                               autocomplete="off" value="<?php echo $row['Email']; ?>" required>
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control form-control-lg" id="price" name="price" value="<?php echo $items['Price']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="full-name">Full name</label>
-                        <input type="text" class="form-control form-control-lg" id="full-name" name="full-name"
-                               autocomplete="off" value="<?php echo $row['FullName']; ?>">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control form-control-lg" id="country" name="country" value="<?php echo $items['Country']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Save</button>
+                        <label for="status">Status</label>
+                        <select name="status" required>
+                            <option value="new"
+                                <?php
+                                    echo $items['Status'] == 'new'? 'selected' : '';
+                                ?>
+                            >
+                                New
+                            </option>
+                            <option value="used"
+                                <?php
+                                    echo $items['Status'] == 'used'? 'selected' : '';
+                                ?>
+                            >
+                                Used
+                            </option>
+                            <option value="old"
+                                <?php
+                                    echo $items['Status']  == 'old'? 'selected' : '';
+                                ?>
+                            >
+                                Old
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="member">Member</label>
+                        <select name="member" required>
+                            <option value="0">...</option>
+                            <?php
+                                // Select all the users
+                                $stmt = $con->prepare("SELECT * FROM users");
+                                $stmt->execute(); // execute the sql statement
+                                $users = $stmt->fetchAll(); // get all the records
+                                foreach($users as $user) {
+                                    ?>
+                                    <option
+                                        value="<?php echo $user['UserID']; ?>"
+                                        <?php
+                                            echo $items['Member_ID']  == $user['UserID']? 'selected' : '';
+                                        ?>
+                                    >
+                                        <?php echo $user['Username']; ?>
+                                    </option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" required>
+                            <option value="0">...</option>
+                            <?php
+                                // Select all the users
+                                $stmt = $con->prepare("SELECT * FROM categories");
+                                $stmt->execute(); // execute the sql statement
+                                $cats = $stmt->fetchAll(); // get all the records
+                                foreach($cats as $cat) {
+                                    ?>
+                                    <option
+                                        value="<?php echo $cat['ID']; ?>"
+                                        <?php
+                                        echo $items['Cat_ID']  == $cat['ID']? 'selected' : '';
+                                        ?>
+                                    >
+                                        <?php echo $cat['Name']; ?>
+                                    </option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Save item</button>
                     </div>
                 </form>
                 <?php
