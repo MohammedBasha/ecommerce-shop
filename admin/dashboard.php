@@ -45,7 +45,11 @@ if (isset($_SESSION['Username'])) {
                         <div class="card-body">
                             <h5 class="card-title">Total items</h5>
 
-                            <p class="card-text">1500</p>
+                            <p class="card-text">
+                                <a href="items.php" title="Items">
+                                    <?php echo countItem('ID', 'items'); ?>
+                                </a>
+                            </p>
                         </div>
                     </div>
                     <div class="card">
