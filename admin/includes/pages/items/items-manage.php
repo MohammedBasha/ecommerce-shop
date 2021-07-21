@@ -1,12 +1,7 @@
 <?php
 
-$query ='';
-if (isset($_GET['page']) && $_GET['page'] == 'pending') {
-    $query = '';
-}
-
-// Select all the users
-$stmt = $con->prepare("SELECT * FROM items $query");
+// Select all the items
+$stmt = $con->prepare("SELECT * FROM items");
 $stmt->execute(); // execute the sql statement
 $rows = $stmt->fetchAll(); // get all the records
 

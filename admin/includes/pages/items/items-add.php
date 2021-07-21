@@ -28,6 +28,48 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="member">Member</label>
+                    <select name="member" required>
+                        <option value="0">...</option>
+                        <?php
+                        // Select all the users
+                        $stmt = $con->prepare("SELECT * FROM users");
+                        $stmt->execute(); // execute the sql statement
+                        $rows = $stmt->fetchAll(); // get all the records
+                        foreach($rows as $row) {
+                            ?>
+                            <option
+                                value="<?php echo $row['UserID']; ?>"
+                            >
+                                <?php echo $row['Username']; ?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" required>
+                        <option value="0">...</option>
+                        <?php
+                        // Select all the users
+                        $stmt = $con->prepare("SELECT * FROM categories");
+                        $stmt->execute(); // execute the sql statement
+                        $rows = $stmt->fetchAll(); // get all the records
+                        foreach($rows as $row) {
+                            ?>
+                            <option
+                                value="<?php echo $row['ID']; ?>"
+                                >
+                                <?php echo $row['Name']; ?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add item</button>
                 </div>
             </form>
