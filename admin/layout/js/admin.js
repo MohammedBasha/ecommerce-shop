@@ -22,23 +22,8 @@ $(function() {
     });
 
     // Confirming the member's delete
-    $('.members-inner-content .confirm').click(function() {
-        return confirm('Do you want to delete this user?');
-    });
-
-    // Confirming the category's delete
-    $('.categories-inner-content .confirm').click(function() {
-        return confirm('Do you want to delete this category?');
-    });
-
-    // Confirming the item's delete
-    $('.items-inner-content .confirm').click(function() {
-        return confirm('Do you want to delete this item?');
-    });
-
-    // Confirming the comment's delete
-    $('.comments-inner-content .confirm').click(function() {
-        return confirm('Do you want to delete this comment?');
+    $('a.confirm').click(function() {
+        return confirm('Do you want to continue the deleteion process?');
     });
 
     // initializing the selectbox plugin

@@ -113,7 +113,12 @@ $rowCount = $stmt->rowCount();
                         <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Save item</button>
                     </div>
                 </form>
+
                 <?php
+
+                // Including the manage comments file from Items directory
+                include 'comments-manage.php';
+
             } else {
                 $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">There\'s no item</div>';
                 redirectHome($msg);

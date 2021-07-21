@@ -7,7 +7,7 @@
 
         // Checking if the comment id exists in the database
         $chk = checkItem('comment_id', 'comments', $commentid);
-        
+
         if ($chk > 0) {
             $stmt = $con->prepare("UPDATE comments SET status = 1 WHERE comment_id = :commentid");
             $stmt->bindParam(":commentid", $commentid);
