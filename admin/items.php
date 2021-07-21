@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 // Starting the session to remember the user
 session_start();
 
@@ -62,3 +64,5 @@ if (isset($_SESSION['Username'])) {
     header('Location: index.php');
     exit();
 }
+
+ob_end_flush();

@@ -7,63 +7,45 @@
                 echo '<h1 class="col-12 text-center">Insert item</h1>';
 
                 // Storing the data in variables
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                $hashedPassword = sha1($password);
-                $email = $_POST['email'];
-                $fullname = $_POST['full-name'];
+                $name           = $_POST['name'];
+                $description    = $_POST['description'];
+                $price          = $_POST['price'];
+                $country        = $_POST['country'];
+                $status         = $_POST['status'];
 
                 // Validate the form
                 $formErrors = [];
 
-                if (empty($username)) {
-                    $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be <strong>Empty</strong>
+                if (empty($name)) {
+                    $formErrors[] = '<div class="error-name alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Name Can\'t be <strong>Empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
                 }
 
-                if (strlen($username) < 4) {
-                    $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username Can\'t be less than <strong>4</strong> characters long
+                if (empty($description)) {
+                    $formErrors[] = '<div class="error-description alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Description Can\'t be <strong>Empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
                 }
 
-                if (strlen($username) > 20) {
-                    $formErrors[] = '<div class="error-username alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Username must be more than <strong>20</strong> characters long
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-                }
-
-                if (empty($password)) {
-                    $formErrors[] = '<div class="error-password alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Password Can\'t be <strong>Empty</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>';
-                }
-
-                if (empty($email)) {
+                if (empty($price)) {
                     $formErrors[] = '<div class="error-email alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Email field can\'t be <strong>empty</strong>
+    Price field can\'t be <strong>empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>';
                 }
 
-                if (empty($fullname)) {
+                if (empty($country)) {
                     $formErrors[] = '<div class="error-fullname alert alert-warning alert-dismissible fade show mb-3" role="alert">
-    Fullname Can\'t be <strong>Empty</strong>
+    Country Can\'t be <strong>Empty</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -78,29 +60,20 @@
                 // Insert the data in the database if there's no errors
                 if (empty($formErrors)) {
 
-                    // Checking if the username is found in the database
-                    $chk = checkItem('Name', 'items', $username);
+                    // Inserting the data in the database
+                    $stmt = $con->prepare("INSERT INTO
+                        items(Name, Description, Price, Date, Country, Status)
+                        VALUES (:name, :description, :price, now(), :country, :status)");
+                    $stmt->execute([
+                        'name'          => $name,
+                        'description'   => $description,
+                        'price'         => $price,
+                        'country'       => $country,
+                        'status'        => $status
+                    ]);
 
-                    if ($chk == 1) { // Redirect him to add member page if username is found in the database
-                        $msg = '<div class="col-12 alert alert-warning text-center mb-3">This item already exists</div>';
+                    $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';
                         redirectHome($msg, 'back');
-
-                    } else { // or insert new member
-
-                        // Inserting the data in the database
-                        $stmt = $con->prepare("INSERT INTO
-                            items(Name, Description, Price, Date, Country, Image, Status, Rating)
-                            VALUES (:username, :password, :email, :fullname, 1, now())");
-                        $stmt->execute([
-                            'username' => $username,
-                            'password' => $hashedPassword,
-                            'email' => $email,
-                            'fullname' => $fullname
-                        ]);
-
-                        $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';
-                        redirectHome($msg, 'back');
-                    }
                 }
             } else {
                 $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">Sorry, you can\'t browse this page</div>';

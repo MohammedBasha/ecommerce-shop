@@ -20,10 +20,11 @@ $rows = $stmt->fetchAll(); // get all the records
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Registered Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Country</th>
                     <th scope="col">Control</th>
                 </tr>
                 </thead>
@@ -34,27 +35,30 @@ $rows = $stmt->fetchAll(); // get all the records
                     ?>
                     <tr>
                         <th scope="row">
-                            <?php echo $row['UserID']; ?>
+                            <?php echo $row['ID']; ?>
+                        </th>
+                        <th scope="row">
+                            <?php echo $row['Name']; ?>
                         </th>
                         <td>
-                            <?php echo $row['Username']; ?>
+                            <?php echo $row['Description']; ?>
                         </td>
                         <td>
-                            <?php echo $row['Email']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['FullName']; ?>
+                            <?php echo $row['Price']; ?>
                         </td>
                         <td>
                             <?php echo $row['Date']; ?>
                         </td>
                         <td>
-                            <a href="members.php?do=edit&userid=<?php echo $row['UserID'] ?>" title="Edit" class="btn btn-success">Edit</a>
-                            <a href="members.php?do=delete&userid=<?php echo $row['UserID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
+                            <?php echo $row['Country']; ?>
+                        </td>
+                        <td>
+                            <a href="items.php?do=edit&userid=<?php echo $row['ID'] ?>" title="Edit" class="btn btn-success">Edit</a>
+                            <a href="items.php?do=delete&userid=<?php echo $row['ID'] ?>" title="Delete" class="btn btn-danger confirm">Delete</a>
                             <?php
-                                if ($row['RegStatus'] == 0) {
+                                if ($row['Status'] == 0) {
                             ?>
-                                    <a href="members.php?do=activate&userid=<?php echo $row['UserID'] ?>" title="Activate" class="btn btn-info">Activate</a>
+                                    <a href="items.php?do=activate&userid=<?php echo $row['UserID'] ?>" title="Activate" class="btn btn-info">Activate</a>
                             <?php
                                 };
                             ?>
