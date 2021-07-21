@@ -19,7 +19,7 @@
                             <a class="nav-link" href="members.php" title="<?php echo lang("MEMBERS"); ?>"><?php echo lang("MEMBERS"); ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" title="<?php echo lang("STATISTICS"); ?>"><?php echo lang("STATISTICS"); ?></a>
+                            <a class="nav-link" href="comments.php" title="<?php echo lang("COMMENTS"); ?>"><?php echo lang("COMMENTS"); ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" title="<?php echo lang("LOGS"); ?>"><?php echo lang("LOGS"); ?></a>

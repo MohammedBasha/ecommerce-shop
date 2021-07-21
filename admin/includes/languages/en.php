@@ -8,7 +8,7 @@ function lang($phrase) {
         "CATEGORIES"    => "Categories",
         "ITEMS"         => "Items",
         "MEMBERS"       => "Members",
-        "STATISTICS"    => "Statistics",
+        "COMMENTS"      => "Comments",
         "LOGS"          => "Logs"
     ];
     return $lang[$phrase];

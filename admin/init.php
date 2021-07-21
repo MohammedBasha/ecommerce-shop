@@ -10,6 +10,7 @@ $func = "includes/functions/"; // Functions Directory
 $members = "includes/pages/members/"; // Members Directory
 $categories = "includes/pages/categories/"; // Categories Directory
 $items = "includes/pages/items/"; // Items Directory
+$comments = "includes/pages/comments/"; // Comments Directory
 $css = "layout/css/"; // CSS Directory
 $js = "layout/js/"; // JS Directory
 
