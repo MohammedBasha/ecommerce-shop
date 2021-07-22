@@ -70,12 +70,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Update the data in the database if there's no errors
     if (empty($formErrors)) {
-    // Updating the data in the database
-        $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
-        $stmt->execute([$username, $email, $fullname, $password, $id]);
+        // Checking if the user is already exists
+        $stmt1 = $con->prepare("SELECT * FROM users WHERE Username = ? AND UserID != ?");
+        $stmt1->execute([$username, $id]);
+        $count1 = $stmt1->rowCount();
 
-        $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
-        redirectHome($msg, 'back');
+        if ($count1 == 1) {
+            $msg = '<div class="col-12 alert alert-warning text-center mt-5 mb-3">Sorry, the username is already exist</div>';
+            redirectHome($msg, 'back');
+        } else {
+            // Updating the data in the database
+            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
+            $stmt->execute([$username, $email, $fullname, $password, $id]);
+
+            $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
+            redirectHome($msg, 'back');
+        }
     }
 } else {
     $msg = '<div class="col-12 alert alert-danger text-center mt-5 mb-3">Sorry, you can\'t browse this page</div>';
