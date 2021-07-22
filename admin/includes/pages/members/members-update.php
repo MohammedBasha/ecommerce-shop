@@ -7,10 +7,10 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Storing the data in variables
-    $id = $_POST['userid'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $fullname = $_POST['full-name'];
+    $id         = $_POST['userid'];
+    $username   = $_POST['username'];
+    $email      = $_POST['email'];
+    $fullname   = $_POST['full-name'];
 
     // Updating the password
     $password = empty($_POST['new-password']) ? $_POST['old-password'] : sha1($_POST['new-password']);

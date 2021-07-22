@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 /*
  * Manage Members page:
  * You can Add, edit and delete members from here
@@ -67,3 +69,5 @@ if (isset($_SESSION['Username'])) {
     header('Location: index.php');
     exit();
 }
+
+ob_end_flush();
