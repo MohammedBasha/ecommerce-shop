@@ -50,8 +50,7 @@
                         ?>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="categories.php?pageid=<?php echo $category["ID"]; ?>"
-                               title="<?php echo $category["Name"]; ?>">
+                               href="categories.php?catid=<?php echo $category["ID"]; ?>&catname=<?php echo strtolower(str_replace(' ', '-', $category["Name"])); ?>" title="<?php echo $category["Name"]; ?>">
                                 <?php echo $category["Name"]; ?>
                             </a>
                         </li>
