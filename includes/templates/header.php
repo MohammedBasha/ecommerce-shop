@@ -29,7 +29,19 @@
 <body class="<?php echo isset($pageClass) ? $pageClass : ''; ?>">
 
 <div class="upper-bar">
-
+    <div class="container">
+        <div class="row">
+            <?php
+            if (isset($_SESSION['frontuser'])) {
+                echo 'Welcome ' . $_SESSION['frontuser'];
+            } else {
+            ?>
+            <a href="login.php" title="Login / Sign up">
+                Login / Sign up
+            </a>
+            <?php } ?>
+        </div>
+    </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Set the page title
 $pageTitle = 'Homepage';
 
@@ -8,5 +10,6 @@ $pageClass = 'home-page';
 
 // include the initialize file
 include "init.php";
-    include $tpl . "footer.php"; // Include the Footer file
-?>
+
+
+include $tpl . "footer.php"; // Include the Footer file

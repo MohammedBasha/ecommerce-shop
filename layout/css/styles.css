@@ -64,3 +64,15 @@ body {
 .navbar .dropdown-menu .dropdown-item:hover, .navbar .dropdown-menu .dropdown-item:focus {
   opacity: 0.7;
 }
+
+/* Login Form */
+.login-form-front {
+  width: 300px;
+  margin: 100px auto;
+}
+.login-form-front h4 {
+  color: #888;
+}
+.login-form-front input {
+  background-color: #eaeaea;
+}
