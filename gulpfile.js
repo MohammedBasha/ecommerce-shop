@@ -9,7 +9,9 @@ var gulp         = require('gulp'),
 
 var config = {
     srcAdmin: './admin/layout/css/admin.sass',
-    destAdmin: './admin/layout/css/'
+    destAdmin: './admin/layout/css/',
+    srcFront: './layout/css/styles.sass',
+    destFront: './layout/css/'
 };
 
 // Error message
@@ -24,8 +26,8 @@ var onError = function (err) {
     this.emit('end');
 };
 
-// Task: `styles`.
-gulp.task('styles', function () {
+// Task: `styles-admin`.
+gulp.task('styles-admin', function () {
     var stream = gulp
         .src(config.srcAdmin)
         .pipe(plumber({errorHandler: onError}))
@@ -47,20 +49,44 @@ gulp.task('styles', function () {
         .pipe( notify( { message: 'TASK: "styles" Completed! 💯', onLast: true } ) );
 });
 
+// Task: `styles-front`.
+gulp.task('styles-front', function () {
+    var stream = gulp
+        .src(config.srcFront)
+        .pipe(plumber({errorHandler: onError}))
+
+        // output non-minified CSS file
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(gulp.dest(config.destFront))
+
+        // output the minified version
+        .pipe(cleanCSS({
+            compatibility: 'ie7'
+        }))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest(config.destFront))
+        .pipe(livereload());
+
+    return stream
+        .pipe( notify( { message: 'TASK: "styles" Completed! 💯', onLast: true } ) );
+});
+
 // Task: `watch`
 gulp.task('watch', function() {
     livereload.listen();
 
-    gulp.watch('./admin/**/*.php').on('change', function(file) {
+    gulp.watch('./**/**/*.php').on('change', function(file) {
         livereload.reload(file);
     });
 
-    gulp.watch('./admin/**/*.js').on('change', function(file) {
+    gulp.watch('./**/**/*.js').on('change', function(file) {
         livereload.reload(file);
     });
 
-     gulp.watch(config.srcAdmin, gulp.series('styles'));
+    gulp.watch(config.srcAdmin, gulp.series('styles-admin'));
+    gulp.watch(config.srcFront, gulp.series('styles-front'));
 });
 
 // Task: `default`
-gulp.task('default', gulp.series('styles', 'watch'));
+gulp.task('default', gulp.series('styles-admin', 'styles-front', 'watch'));
