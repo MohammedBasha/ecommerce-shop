@@ -15,6 +15,7 @@ $css = "layout/css/"; // CSS Directory
 $js = "layout/js/"; // JS Directory
 
 // Include the important files
-include $func . "functions.php"; // The functions file
+include 'admin/' . $func . "functions.php"; // The admin functions file
+include $func . "functions.php"; // The front functions file
 include $lang . "en.php"; // The English language file
 include $tpl . "header.php"; // The Header file
