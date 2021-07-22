@@ -80,3 +80,15 @@ function getLatest($select, $from, $order, $limit = 5) {
     $rows = $stmt->fetchAll();
     return $rows;
 }
+
+/*
+ * Get Categories
+ * */
+
+function getCategories() {
+    global $con;
+    $stmt = $con->prepare("SELECT * FROM categories ORDER BY ID");
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+    return $rows;
+}

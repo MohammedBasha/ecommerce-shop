@@ -3,18 +3,6 @@
 body
   background-color: #f4f4f4
 
-/* Login Form */
-
-.login-form
-  width: 300px
-  margin: 100px auto
-
-  h4
-    color: #888
-
-  input
-    background-color: #eaeaea
-
 /* Navbar styles */
 .navbar
   padding-top: 0
@@ -41,6 +29,9 @@ body
 
       &:last-child
         margin-right: 0
+
+  .navbar-collapse
+    flex-grow: unset
 
   .navbar-dark .navbar-nav .nav-link:focus,
   .navbar-dark .navbar-nav .nav-link:hover,
@@ -70,42 +61,3 @@ body
       &:hover,
       &:focus
         opacity: .7
-
-/* Members page styles */
-
-.dashboard-inner-wrapper,
-.members-inner-content,
-.categories-inner-content,
-.items-inner-content,
-.comments-inner-content
-  h1
-    font-size: 55px
-    font-weight: bold
-    margin: 40px 0
-    color: #666
-
-  .form-group
-    display: flex
-    align-items: center
-    justify-content: space-between
-    position: relative
-
-    label
-      flex-basis: 20%
-
-    .show-password
-      position: absolute
-      right: 10px
-      cursor: pointer
-      font-size: 1.2em
-
-/* Dashboard Page */
-
-.cards
-  display: flex
-  justify-content: space-between
-
-  .card
-    flex-basis: inherit
-    margin: 0 10px
-    text-align: center
