@@ -1,6 +1,6 @@
 <?php
 
-// Select all the users
+// Select all the comments
 $stmt = $con->prepare("SELECT comments.*,
                       items.Name AS Item_Name,
                       users.Username FROM comments

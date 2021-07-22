@@ -56,7 +56,11 @@ if (isset($_SESSION['Username'])) {
                         <div class="card-body">
                             <h5 class="card-title">Total comments</h5>
 
-                            <p class="card-text">3500</p>
+                            <p class="card-text">
+                                <a href="comments.php" title="Comments">
+                                    <?php echo countItem('comment_id', 'comments'); ?>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -104,6 +108,57 @@ if (isset($_SESSION['Username'])) {
                                     ?>
                                 </p>
                             <?php }; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-5 latest-comments">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest comments:</h5>
+                            <?php
+
+                            $limit = 5;
+
+                            // Select all the comments
+                            $cmtStmt = $con->prepare("
+                              SELECT comments.*,
+                              users.Username FROM comments
+                              INNER JOIN users ON users.UserID = comments.member_id
+                              ORDER BY comments.comment_date DESC
+                              LIMIT $limit");
+                            $cmtStmt->execute(); // execute the sql statement
+                            $comments = $cmtStmt->fetchAll(); // get all the records
+
+                            if (!empty($comments)) {
+                                foreach ($comments as $comments) {
+                                    ?>
+                                    <div class="card-text">
+                                        <p class="comment-member">
+                                            <?php echo $comments['Username']; ?>
+                                        </p>
+                                        <p class="comment-text">
+                                            <?php echo $comments['comment']; ?>
+                                        </p>
+                                        <p class="comment-control">
+                                            <a href="comments.php?do=edit&commentid=<?php echo $comments['comment_id']; ?>" title="Edit" class="btn btn-success">Edit</a>
+                                            <?php
+                                            if ($comments['status'] == 0) {
+                                                ?>
+                                                <a href="comments.php?do=approve&commentid=<?php echo $comments['comment_id'] ?>" title="Approve" class="btn btn-info">Approve</a>
+                                                <?php
+                                            };
+                                            ?>
+                                        </p>
+                                    </div>
+                                <?php };
+                            } else {
+                                ?>
+                            <div class="card-text">
+                                No comments.
+                            </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
