@@ -64,7 +64,7 @@ $user = $stmt->fetch();
                             <p class="card-text">
                                 <?php
 
-                                $items = getItems('Member_ID', $user['UserID']);
+                                $items = getItems('Member_ID', $user['UserID'], 1);
 
                                 if (!empty($items)) {
                                 foreach ($items as $item) {
@@ -75,6 +75,11 @@ $user = $stmt->fetch();
                                     <a href="item.php?itemid=<?php echo $item['ID']; ?>" title="<?php echo $item['Name']; ?>">
                                         <?php echo $item['Name']; ?>
                                     </a>
+                                    <?php
+                                    if ($item['Approve'] == 0) {
+                                        echo ' Not Approved';
+                                    }
+                                    ?>
                                 </h3>
 
                                 <div class="category-item-image"></div>
