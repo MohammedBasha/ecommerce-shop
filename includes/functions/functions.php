@@ -10,9 +10,12 @@ function getCategories() {
 }
 
 // Getting all the items of specific category
-function getItems($where = 'Cat_ID', $value = 1) {
+function getItems($where = 'Cat_ID', $value = 1, $approve = NULL) {
+
+    $sql = $approve == NULL? 'AND Approve = 1' : NULL;
+
     global $con;
-    $stmt = $con->prepare("SELECT * FROM items WHERE $where = ? ORDER BY ID");
+    $stmt = $con->prepare("SELECT * FROM items WHERE $where = ? $sql ORDER BY ID");
     $stmt->execute([$value]);
     $rows = $stmt->fetchAll();
     return $rows;
