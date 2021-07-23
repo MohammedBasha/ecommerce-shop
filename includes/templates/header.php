@@ -35,7 +35,9 @@
             if (isset($_SESSION['frontuser'])) {
                 echo 'Welcome ' . $_SESSION['frontuser'];
                 $status = checkUserStatus($_SESSION['frontuser']);
-                echo $status == 1? ' Your membership needs activation' : '';
+                echo $status == 1? ' Your membership needs activation ' : ' ';
+                echo '<a href="profile.php" title="Profile">Go to Profile</a>';
+                echo ' or <a href="logout.php" title="Logout">Logout</a>';
             } else {
             ?>
             <a href="login.php" title="Login / Sign up">
@@ -49,7 +51,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <a class="navbar-brand" href="dashboard.php"
+                <a class="navbar-brand" href="index.php"
                    title="<?php echo lang("HOME_ADMIN"); ?>"><?php echo lang("HOME_ADMIN"); ?></a>
                 <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

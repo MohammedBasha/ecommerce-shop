@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 session_start();
 
@@ -78,3 +79,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
 
 <?php
 include $tpl . "footer.php"; // Include the Footer file
+
+ob_end_flush();
