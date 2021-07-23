@@ -1,14 +1,12 @@
 <?php
 
 // Getting all from tableName
-function getAllFrom($tblName, $order = NULL) {
-    if ($order == NULL) {
-        $sql = '';
-    } else {
-        $sql = 'ORDER BY ' . $order . ' DESC';
-    }
+function getAllFrom($tblName, $where = NULL, $order = NULL) {
+    $sql1 = $where == NULL? '' : 'WHERE ' . $where . ' = 1';
+    $sql2 = $order == NULL? '' : 'ORDER BY ' . $order . ' DESC';
+
     global $con;
-    $getAll = $con->prepare("SELECT * FROM $tblName $sql");
+    $getAll = $con->prepare("SELECT * FROM $tblName $sql1 $sql2");
     $getAll->execute();
     $all = $getAll->fetchAll();
     return $all;
