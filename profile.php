@@ -71,7 +71,11 @@ $user = $stmt->fetch();
                                 ?>
 
                             <div class="category-item-name">
-                                <h3><?php echo $item['Name']; ?></h3>
+                                <h3>
+                                    <a href="item.php?itemid=<?php echo $item['ID']; ?>" title="<?php echo $item['Name']; ?>">
+                                        <?php echo $item['Name']; ?>
+                                    </a>
+                                </h3>
 
                                 <div class="category-item-image"></div>
                                 <div class="category-item-description">
