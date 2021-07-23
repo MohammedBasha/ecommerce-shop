@@ -112,6 +112,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
     </button>
 </div>';
         }
+
+        if (empty($formErrors)) {
+
+            // Checking if the username is found in the database
+            $chk = checkItem('Username', 'users', $username);
+
+            if ($chk == 1) { // Redirect him to add member page if username is found in the database
+                $formErrors[] = '<div class="col-12 alert alert-warning text-center mb-3">This username already exists</div>';
+
+            } else { // or insert new member
+
+                // Inserting the data in the database
+                $stmt = $con->prepare("INSERT INTO
+                            users(Username, Password, Email, RegStatus, Date)
+                            VALUES (:username, :password, :email, 0, now())");
+                $stmt->execute([
+                    'username' => $username,
+                    'password' => $hashedPass,
+                    'email' => $email
+                ]);
+
+                $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">You\'ve registered successfully</div>';
+                redirectHome($msg, 'back');
+            }
+        }
     }
 }
 
