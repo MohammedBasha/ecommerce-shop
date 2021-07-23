@@ -10,10 +10,10 @@ function getCategories() {
 }
 
 // Getting all the items of specific category
-function getItems($catid) {
+function getItems($where = 'Cat_ID', $value = 1) {
     global $con;
-    $stmt = $con->prepare("SELECT * FROM items WHERE Cat_ID = ? ORDER BY ID");
-    $stmt->execute([$catid]);
+    $stmt = $con->prepare("SELECT * FROM items WHERE $where = ? ORDER BY ID");
+    $stmt->execute([$value]);
     $rows = $stmt->fetchAll();
     return $rows;
 }
