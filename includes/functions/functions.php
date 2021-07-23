@@ -1,5 +1,19 @@
 <?php
 
+// Getting all from tableName
+function getAllFrom($tblName, $order = NULL) {
+    if ($order == NULL) {
+        $sql = '';
+    } else {
+        $sql = 'ORDER BY ' . $order . ' DESC';
+    }
+    global $con;
+    $getAll = $con->prepare("SELECT * FROM $tblName $sql");
+    $getAll->execute();
+    $all = $getAll->fetchAll();
+    return $all;
+}
+
 // Getting all the categories
 function getCategories() {
     global $con;
