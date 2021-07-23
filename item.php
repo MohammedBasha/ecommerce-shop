@@ -25,6 +25,7 @@ users.Username FROM items
 INNER JOIN categories ON categories.ID = items.Cat_ID
 INNER JOIN users ON users.UserID = items.Member_ID
 WHERE items.ID = ?
+AND Approve = 1
 ORDER BY items.Date DESC
 ");
 $stmt->execute([$itemid]);
@@ -152,9 +153,9 @@ $itemCount = $stmt->rowCount();
                     </div>
                     <?php
                 } else {
-                    ?>
-                    <div class="col-12 text-center">No Items.</div>
-                    <?php
+                  
+                    $msg = '<div class="col-12 text-center">No Item or need approval.</div>';
+                    redirectHome($msg, 'back');
                 }
                 ?>
             </div>
