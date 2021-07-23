@@ -153,7 +153,7 @@ $itemCount = $stmt->rowCount();
                     </div>
                     <?php
                 } else {
-                  
+
                     $msg = '<div class="col-12 text-center">No Item or need approval.</div>';
                     redirectHome($msg, 'back');
                 }

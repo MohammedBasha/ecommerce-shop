@@ -167,11 +167,8 @@ Category Can\'t be <strong>Empty</strong>
                                         <select name="category" required>
                                             <option value="0">...</option>
                                             <?php
-                                            // Select all the users
-                                            $stmt = $con->prepare("SELECT * FROM categories");
-                                            $stmt->execute(); // execute the sql statement
-                                            $rows = $stmt->fetchAll(); // get all the records
-                                            foreach($rows as $row) {
+                                            // Select all the categories
+                                            foreach(getAllFrom('categories', '', 'ID') as $row) {
                                                 ?>
                                                 <option
                                                     value="<?php echo $row['ID']; ?>"
