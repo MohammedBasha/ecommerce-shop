@@ -67,7 +67,8 @@ $user = $stmt->fetch();
                                 $items = getItems('Member_ID', $user['UserID']);
 
                                 if (!empty($items)) {
-                                foreach ($items as $item) { ?>
+                                foreach ($items as $item) {
+                                ?>
 
                             <div class="category-item-name">
                                 <h3><?php echo $item['Name']; ?></h3>
@@ -83,7 +84,7 @@ $user = $stmt->fetch();
                             <?php
                             }
                             } else {
-                                echo 'No Ads.';
+                                echo 'No Ads. You can add <a href="newad.php" title="New Ad">New Ad</a>';
                             }
                             ?>
                             </p>

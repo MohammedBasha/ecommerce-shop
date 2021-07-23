@@ -37,6 +37,7 @@
                 $status = checkUserStatus($_SESSION['frontuser']);
                 echo $status == 1? ' Your membership needs activation ' : ' ';
                 echo '<a href="profile.php" title="Profile">Go to Profile</a>';
+                echo ' - <a href="newad.php" title="New Ad">New ad</a>';
                 echo ' or <a href="logout.php" title="Logout">Logout</a>';
             } else {
             ?>
@@ -54,8 +55,7 @@
                 <a class="navbar-brand" href="index.php"
                    title="<?php echo lang("HOME_ADMIN"); ?>"><?php echo lang("HOME_ADMIN"); ?></a>
                 <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -65,8 +65,7 @@
                             foreach(getCategories() as $category) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link"
-                               href="categories.php?catid=<?php echo $category["ID"]; ?>&catname=<?php echo strtolower(str_replace(' ', '-', $category["Name"])); ?>" title="<?php echo $category["Name"]; ?>">
+                            <a class="nav-link" href="categories.php?catid=<?php echo $category["ID"]; ?>&catname=<?php echo strtolower(str_replace(' ', '-', $category["Name"])); ?>" title="<?php echo $category["Name"]; ?>">
                                 <?php echo $category["Name"]; ?>
                             </a>
                         </li>
