@@ -34,6 +34,8 @@
             <?php
             if (isset($_SESSION['frontuser'])) {
                 echo 'Welcome ' . $_SESSION['frontuser'];
+                $status = checkUserStatus($_SESSION['frontuser']);
+                echo $status == 1? ' Your membership needs activation' : '';
             } else {
             ?>
             <a href="login.php" title="Login / Sign up">
