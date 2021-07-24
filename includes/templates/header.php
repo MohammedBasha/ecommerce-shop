@@ -62,7 +62,10 @@
                 <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <?php
-                            foreach(getCategories() as $category) {
+                        $stmt = $con->prepare("SELECT * FROM categories WHERE Parent = 0 ORDER BY ID");
+                        $stmt->execute();
+                        $rows = $stmt->fetchAll();
+                            foreach($rows as $category) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="categories.php?catid=<?php echo $category["ID"]; ?>&catname=<?php echo strtolower(str_replace(' ', '-', $category["Name"])); ?>" title="<?php echo $category["Name"]; ?>">

@@ -28,6 +28,32 @@ $rowCount = $stmt->rowCount();
                         <input type="text" class="form-control form-control-lg" id="description" name="description" value="<?php echo $row['Description']; ?>">
                     </div>
                     <div class="form-group">
+                        <label for="parent">Parent</label>
+                        <select name="parent" required>
+                            <option value="0">None</option>
+                            <?php
+                            // Select all the users
+                            $parentStmt = $con->prepare("SELECT * FROM categories WHERE Parent = 0 ORDER BY ID");
+                            $parentStmt->execute(); // execute the sql statement
+                            $parentCats = $parentStmt->fetchAll(); // get all the records
+                            foreach($parentCats as $parentCat) {
+                                ?>
+                                <option
+                                    value="<?php echo $parentCat['ID']; ?>"
+                                    <?php
+                                    if($parentCat['ID'] == $row['Parent']) {
+                                        echo 'selected';
+                                    }
+                                    ?>
+                                    >
+                                    <?php echo $parentCat['Name']; ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="ordering">Ordering</label>
                         <input type="text" class="form-control form-control-lg" id="ordering" name="ordering" value="<?php echo $row['Ordering']; ?>">
                     </div>

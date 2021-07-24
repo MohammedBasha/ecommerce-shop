@@ -12,13 +12,34 @@
                     <input type="text" class="form-control form-control-lg" id="description" name="description" placeholder="">
                 </div>
                 <div class="form-group">
+                    <label for="parent">Parent</label>
+                    <select name="parent" required>
+                        <option value="0">None</option>
+                        <?php
+                        // Select all the users
+                        $parentStmt = $con->prepare("SELECT * FROM categories WHERE Parent = 0 ORDER BY ID");
+                        $parentStmt->execute(); // execute the sql statement
+                        $parentCats = $parentStmt->fetchAll(); // get all the records
+                        foreach($parentCats as $parentCat) {
+                            ?>
+                            <option
+                                value="<?php echo $parentCat['ID']; ?>"
+                                >
+                                <?php echo $parentCat['Name']; ?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="ordering">Ordering</label>
                     <input type="text" class="form-control form-control-lg" id="ordering" name="ordering">
                 </div>
                 <div class="form-group">
                     <label>Visibility</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visibility" id="visibility-yes" value="1">
+                        <input class="form-check-input" type="radio" name="visibility" id="visibility-yes" value="1" checked>
                         <label class="form-check-label" for="visibility-yes">
                             Yes
                         </label>
@@ -33,7 +54,7 @@
                 <div class="form-group">
                     <label>Allow comments</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="comments" id="comments-yes" value="1">
+                        <input class="form-check-input" type="radio" name="comments" id="comments-yes" value="1" checked>
                         <label class="form-check-label" for="comments-yes">
                             Yes
                         </label>
@@ -48,7 +69,7 @@
                 <div class="form-group">
                     <label>Allow ads</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="ads" id="ads-yes" value="1">
+                        <input class="form-check-input" type="radio" name="ads" id="ads-yes" value="1" checked>
                         <label class="form-check-label" for="ads-yes">
                             Yes
                         </label>

@@ -9,6 +9,7 @@
                 // Storing the data in variables
                 $name           = $_POST['name'];
                 $description    = $_POST['description'];
+                $parent         = $_POST['parent'];
                 $ordering       = $_POST['ordering'];
                 $visibility     = $_POST['visibility'];
                 $comments       = $_POST['comments'];
@@ -28,11 +29,12 @@
 
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
-                            categories(Name, Description, Ordering, Visibility, Allow_Comment, Allow_ads)
-                            VALUES (:name, :description, :ordering, :visibility, :allow_comment, :allow_ads)");
+                            categories(Name, Description, Parent, Ordering, Visibility, Allow_Comment, Allow_ads)
+                            VALUES (:name, :description, :parent, :ordering, :visibility, :allow_comment, :allow_ads)");
                         $stmt->execute([
                             'name' => $name,
                             'description' => $description,
+                            'parent' => $parent,
                             'ordering' => $ordering,
                             'visibility' => $visibility,
                             'allow_comment' => $comments,

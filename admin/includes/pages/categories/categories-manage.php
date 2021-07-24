@@ -29,6 +29,7 @@ $rows = $stmt->fetchAll(); // get all the records
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Parent</th>
                     <th scope="col">Ordering</th>
                     <th scope="col">Visibility</th>
                     <th scope="col">Allow Comments</th>
@@ -50,6 +51,20 @@ $rows = $stmt->fetchAll(); // get all the records
                         </td>
                         <td>
                             <?php echo $row['Description']; ?>
+                        </td>
+                        <td>
+                            <?php
+                                $parentID = $row['Parent'];
+                                if ($parentID == 0) {
+                                    echo 'None';
+                                } else {
+                                    // Select category name
+                                    $parentStmt = $con->prepare("SELECT Name FROM categories WHERE ID = $parentID");
+                                    $parentStmt->execute(); // execute the sql statement
+                                    $parents = $parentStmt->fetch(); // get all the records
+                                    echo $parents['Name'];
+                                }
+                            ?>
                         </td>
                         <td>
                             <?php echo $row['Ordering']; ?>
