@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status         = $_POST['status'];
     $category       = $_POST['category'];
     $member         = $_POST['member'];
+    $tags           = $_POST['tags'];
 
     // Validate the form
     $formErrors = [];
@@ -81,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update the data in the database if there's no errors
     if (empty($formErrors)) {
     // Updating the data in the database
-        $stmt = $con->prepare("UPDATE items SET Name = ?, Description = ?, Price = ?, Country = ?, Status = ?, Cat_ID = ?, Member_ID = ? WHERE ID = ?");
-        $stmt->execute([$name, $description, $price, $country, $status, $category, $member, $itemid]);
+        $stmt = $con->prepare("UPDATE items SET Name = ?, Description = ?, Price = ?, Country = ?, Status = ?, Cat_ID = ?, Member_ID = ?, Tags = ? WHERE ID = ?");
+        $stmt->execute([$name, $description, $price, $country, $status, $category, $member, $tags, $itemid]);
 
         $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record updated</div>';
         redirectHome($msg, 'back');

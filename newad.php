@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // POST should be uppercase
     $country = filter_var($_POST['country'], FILTER_SANITIZE_STRING);
     $status = filter_var($_POST['status'], FILTER_SANITIZE_STRING);
     $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
+    $tags = filter_var($_POST['tags'], FILTER_SANITIZE_STRING);
 
 
     // Validate the form
@@ -108,8 +109,8 @@ Category Can\'t be <strong>Empty</strong>
 
         // Inserting the data in the database
         $stmt = $con->prepare("INSERT INTO
-                    items(Name, Description, Price, Date, Country, Status, Cat_ID, Member_ID)
-                    VALUES (:name, :desc, :price, now(), :country, :status, :catid, :memberid)");
+                    items(Name, Description, Price, Date, Country, Status, Cat_ID, Member_ID, Tags)
+                    VALUES (:name, :desc, :price, now(), :country, :status, :catid, :memberid, :tags)");
         $stmt->execute([
             'name'      => $name,
             'desc'      => $description,
@@ -117,7 +118,8 @@ Category Can\'t be <strong>Empty</strong>
             'country'   => $country,
             'status'    => $status,
             'catid'     => $category,
-            'memberid'  => $_SESSION['frontuid']
+            'memberid'  => $_SESSION['frontuid'],
+            'tags'     => $tags,
         ]);
 
         $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">You\'ve added item successfully</div>';
@@ -179,6 +181,10 @@ Category Can\'t be <strong>Empty</strong>
                                             }
                                             ?>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tags">Tags</label>
+                                        <input type="text" class="form-control form-control-lg" id="tags" name="tags">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add item</button>

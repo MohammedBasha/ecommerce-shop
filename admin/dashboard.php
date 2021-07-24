@@ -166,6 +166,7 @@ if (isset($_SESSION['Username'])) {
         </div>
     </div>
     <?php
+
     include $tpl . "footer.php"; // Include the Footer file
 } else {
     header('Location: index.php');

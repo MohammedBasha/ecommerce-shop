@@ -70,6 +70,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <input type="text" class="form-control form-control-lg" id="tags" name="tags">
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add item</button>
                 </div>
             </form>

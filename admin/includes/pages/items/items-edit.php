@@ -110,6 +110,10 @@ $rowCount = $stmt->rowCount();
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control form-control-lg" id="tags" name="tags" value="<?php echo $items['Tags']; ?>">
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Save item</button>
                     </div>
                 </form>

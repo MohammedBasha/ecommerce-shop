@@ -14,6 +14,7 @@
                 $status         = $_POST['status'];
                 $category       = $_POST['category'];
                 $member         = $_POST['member'];
+                $tags           = $_POST['tags'];
 
                 // Validate the form
                 $formErrors = [];
@@ -82,8 +83,8 @@
 
                     // Inserting the data in the database
                     $stmt = $con->prepare("INSERT INTO
-                        items(Name, Description, Price, Date, Country, Status, Cat_ID, Member_ID)
-                        VALUES (:name, :description, :price, now(), :country, :status, :catid, :member_id)");
+                        items(Name, Description, Price, Date, Country, Status, Cat_ID, Member_ID, Tags)
+                        VALUES (:name, :description, :price, now(), :country, :status, :catid, :member_id, :tags)");
                     $stmt->execute([
                         'name'          => $name,
                         'description'   => $description,
@@ -91,7 +92,8 @@
                         'country'       => $country,
                         'status'        => $status,
                         'catid'         => $category,
-                        'member_id'     => $member
+                        'member_id'     => $member,
+                        'tags'          => $tags
                     ]);
 
                     $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';

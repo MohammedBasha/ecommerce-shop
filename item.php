@@ -63,6 +63,17 @@ $itemCount = $stmt->rowCount();
                     <div class="col-12 item-user">
                         <?php echo $item['Username']; ?>
                     </div>
+                    <div class="col-12 item-user">
+                        Tags: <?php
+                        $tags = $item['Tags'];
+                        if (!empty($tags)) {
+                            $allTags = explode(', ', $tags);
+                            foreach ($allTags as $tag) {
+                                echo "<a href='tag.php?name={$tag}' title='{$tag}'>$tag</a><br>";
+                            }
+                        }
+                        ?>
+                    </div>
                     <?php
                     if (isset($_SESSION['frontuser'])) {
                     ?>
