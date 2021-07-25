@@ -21,6 +21,7 @@ $rows = $stmt->fetchAll(); // get all the records
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Username</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Email</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Registered Date</th>
@@ -38,6 +39,15 @@ $rows = $stmt->fetchAll(); // get all the records
                         </th>
                         <td>
                             <?php echo $row['Username']; ?>
+                        </td>
+                        <td>
+                            <?php
+                            if (!empty($row['Image'])) {
+                                echo "<img src='uploads\\users\\" . $row['Image'] . "' alt='" . $row['Username'] . "' width='150px' height='150px'>";
+                            } else {
+                                echo "No image";
+                            }
+                            ?>
                         </td>
                         <td>
                             <?php echo $row['Email']; ?>

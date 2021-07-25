@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <h1 class="col-12 text-center">Add new member</h1>
-            <form class="col-8 edit-member-form" method="post" action="?do=insert">
+            <form class="col-8 edit-member-form" method="post" enctype="multipart/form-data" action="?do=insert">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username" autocomplete="off" required>
@@ -19,6 +19,10 @@
                 <div class="form-group">
                     <label for="full-name">Full name</label>
                     <input type="text" class="form-control form-control-lg" id="full-name" name="full-name" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control form-control-lg" id="image" name="image">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-inline-block btn-lg">Add member</button>

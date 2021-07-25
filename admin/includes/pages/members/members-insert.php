@@ -7,11 +7,26 @@
                 echo '<h1 class="col-12 text-center">Insert member</h1>';
 
                 // Storing the data in variables
-                $username = $_POST['username'];
-                $password = $_POST['password'];
+                $username       = $_POST['username'];
+                $password       = $_POST['password'];
                 $hashedPassword = sha1($password);
-                $email = $_POST['email'];
-                $fullname = $_POST['full-name'];
+                $email          = $_POST['email'];
+                $fullname       = $_POST['full-name'];
+
+                // Getting the image data in variables
+                $image = $_FILES['image'];
+                $image_name = $image['name'];
+                $image_type = $image['type'];
+                $image_temp = $image['tmp_name'];
+                $image_size = $image['size'];
+                $image_error = $image['error'];
+
+                // Setting the allowed image extensions
+                $allowed_extensions = ['jpg', 'gif', 'jpeg', 'png'];
+
+                // Getting the images types
+                $image_extension = explode('.', $image_name);
+                $refined_image_extension = strtolower(end($image_extension));
 
                 // Validate the form
                 $formErrors = [];
@@ -70,6 +85,36 @@
 </div>';
                 }
 
+                 // checking th image field
+                if (empty($image_name)) {
+                    $formErrors[] = '<div class="error-image alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Image filed is <strong>required</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+                }
+
+                // Checking the valid images types
+                if (!empty($image_name) && !in_array($refined_image_extension, $allowed_extensions)) {
+                    $formErrors[] = '<div class="error-image alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Image types are <strong>jpg, gif, jpeg and png</strong> only
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+                }
+
+                // Checking the valid images types
+                if ($image_size > 4194304) {
+                    $formErrors[] = '<div class="error-image alert alert-warning alert-dismissible fade show mb-3" role="alert">
+    Image Can\'t be more than <strong>4 MB</strong> only
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>';
+                }
+
                 // Loop through the errors and print them
                 foreach ($formErrors as $error) {
                     echo $error . '<br>';
@@ -77,6 +122,12 @@
 
                 // Insert the data in the database if there's no errors
                 if (empty($formErrors)) {
+
+                    // Setting a new name for each image image
+                    $lastImageName = rand(0, 1000000000000) . '.' . $refined_image_extension;
+
+                    // moving the image file to uploads directory
+                    move_uploaded_file($image_temp, "uploads\\users\\" . $lastImageName);
 
                     // Checking if the username is found in the database
                     $chk = checkItem('Username', 'users', $username);
@@ -89,13 +140,14 @@
 
                         // Inserting the data in the database
                         $stmt = $con->prepare("INSERT INTO
-                            users(Username, Password, Email, FullName, RegStatus, Date)
-                            VALUES (:username, :password, :email, :fullname, 1, now())");
+                            users(Username, Password, Email, FullName, RegStatus, Date, Image)
+                            VALUES (:username, :password, :email, :fullname, 1, now(), :image)");
                         $stmt->execute([
                             'username' => $username,
                             'password' => $hashedPassword,
                             'email' => $email,
-                            'fullname' => $fullname
+                            'fullname' => $fullname,
+                            'image' => $lastImageName
                         ]);
 
                         $msg = '<div class="col-12 alert alert-success text-center mt-5 mb-3">' . $stmt->rowCount() . ' Record inserted</div>';
